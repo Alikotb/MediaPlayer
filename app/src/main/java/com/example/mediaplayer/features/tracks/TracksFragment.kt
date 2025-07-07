@@ -1,18 +1,15 @@
-package com.example.mediaplayer
+package com.example.mediaplayer.features.tracks
 
 import android.os.Bundle
 import android.provider.MediaStore
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.example.mediaplayer.databinding.FragmentHomeBinding
+import androidx.fragment.app.Fragment
 import com.example.mediaplayer.databinding.FragmentTracksBinding
-
 
 class TracksFragment : Fragment() {
     private var _binding: FragmentTracksBinding? = null
-    private val binding get() = _binding!!
     val audioList = mutableListOf<String>()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -47,7 +44,6 @@ class TracksFragment : Fragment() {
             val pathColumn = it.getColumnIndexOrThrow(MediaStore.Audio.Media.DATA)
 
             while (it.moveToNext()) {
-                val name = it.getString(nameColumn)
                 val path = it.getString(pathColumn)
                 audioList.add(path)
             }

@@ -1,4 +1,4 @@
-package com.example.mediaplayer
+package com.example.mediaplayer.features.home
 
 import android.os.Bundle
 import android.util.Log
@@ -6,10 +6,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.navigation.Navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import androidx.viewpager2.adapter.FragmentStateAdapter
+import com.example.mediaplayer.R
+import com.example.mediaplayer.features.tracks.TracksFragment
 import com.example.mediaplayer.databinding.FragmentHomeBinding
+import com.example.mediaplayer.features.albums.AlbumsFragment
+import com.example.mediaplayer.features.folders.FoldersFragment
 import com.google.android.material.tabs.TabLayoutMediator
 
 class SplashFragment : Fragment() {

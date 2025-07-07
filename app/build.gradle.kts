@@ -3,6 +3,8 @@ import org.jetbrains.kotlin.storage.CacheResetOnProcessCanceled.enabled
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
+    id("org.jetbrains.kotlin.plugin.serialization") version "1.9.22"
+    kotlin("kapt")
 }
 
 android {
@@ -60,4 +62,15 @@ dependencies {
 
     implementation ("androidx.room:room-runtime:2.6.1")
     annotationProcessor ("androidx.room:room-compiler:2.6.1")
+
+
+    //serialization
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.3")
+
+    //Scoped API
+    implementation("androidx.lifecycle:lifecycle-viewmodel-compose-android:2.8.7")
+
+    //koin
+    val koin_android_version = "4.0.2"
+    implementation("io.insert-koin:koin-android:$koin_android_version")
 }
