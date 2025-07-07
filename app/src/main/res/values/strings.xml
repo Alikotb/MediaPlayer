@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">MediaPlayer</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="mymusic">MyMusic</string>
+    <string name="search">search</string>
+    <string name="fav_btn">fav_btn</string>
+    <string name="albums">Albums!</string>
+    <string name="tracks">Tracks!</string>
+    <string name="folders">Folders!</string>
+</resources>
