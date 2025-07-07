@@ -1,6 +1,7 @@
 package com.example.mediaplayer.model.media_source
 
 import android.content.Context
+import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.media.MediaMetadataRetriever
 import android.os.Build
@@ -55,15 +56,6 @@ class MediaSourceImp(val context: Context): IMediaSource {
 
             while (it.moveToNext()) {
                 val path = it.getString(pathCol)
-
-                val retriever = MediaMetadataRetriever()
-                retriever.setDataSource(path)
-                val art = retriever.embeddedPicture
-                val albumArt = art?.let { bytes ->
-                    BitmapFactory.decodeByteArray(bytes, 0, bytes.size)
-                }
-                retriever.release()
-
                 val music = AudioDto(
                     id = it.getLong(idCol),
                     title = it.getString(titleCol),
@@ -74,7 +66,7 @@ class MediaSourceImp(val context: Context): IMediaSource {
                     size = it.getLong(sizeCol),
                     dateAdded = it.getLong(dateCol),
                     albumId = it.getLong(albumIdCol),
-                    albumArt = albumArt
+                    albumArt = null
                 )
                 musicList.add(music)
             }
@@ -121,5 +113,18 @@ class MediaSourceImp(val context: Context): IMediaSource {
    override fun getAllMusic(): List<AudioDto> {
         return loadAllAudio()
     }
+
+    fun getAlbumArt(path: String): Bitmap? {
+        return try {
+            val retriever = MediaMetadataRetriever()
+            retriever.setDataSource(path)
+            val art = retriever.embeddedPicture
+            retriever.release()
+            art?.let { BitmapFactory.decodeByteArray(it, 0, it.size) }
+        } catch (e: Exception) {
+            null
+        }
+    }
+
 
 }

@@ -42,7 +42,7 @@
         android:label="SearchFragment" />
     <fragment
         android:id="@+id/tracksFragment"
-        android:name="com.example.mediaplayer.features.tracks.TracksFragment"
+        android:name="com.example.mediaplayer.features.tracks.view.TracksFragment"
         android:label="TracksFragment" />
     <activity
         android:id="@+id/mainActivity"
