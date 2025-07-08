@@ -3,11 +3,13 @@ package com.example.mediaplayer.model.repository
 import com.example.mediaplayer.model.dto.AlbumsDto
 import com.example.mediaplayer.model.dto.AudioDto
 import com.example.mediaplayer.model.dto.FolderDto
+import com.example.mediaplayer.model.local_data_source.data_source.ILocalDataSource
 import com.example.mediaplayer.model.media_source.IMediaSource
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flowOf
 
-class RepositoryImp(private val mediaSource: IMediaSource):IRepository{
+class RepositoryImp(private val mediaSource: IMediaSource,private  val localDataSource: ILocalDataSource):IRepository{
+
     override suspend fun getAllMusic(): Flow<List<AudioDto>> {
         return flowOf( mediaSource.getAllMusic())
     }
@@ -19,5 +21,18 @@ class RepositoryImp(private val mediaSource: IMediaSource):IRepository{
     override suspend fun getAllAlbums(): Flow<List<AlbumsDto>> {
         return flowOf(mediaSource.getAllAlbums())
     }
+
+    override suspend fun insertAudioFile(audio: AudioDto) {
+       localDataSource.insertAudioFile(audio)
+    }
+
+    override fun getAllMedia() = localDataSource.getAllMedia()
+
+    override suspend fun deleteMediaFile(audio: AudioDto) {
+       localDataSource.deleteMediaFile(audio)
+    }
+
+    override suspend fun isFav(audio: AudioDto) = localDataSource.isFav(audio)
+
 
 }

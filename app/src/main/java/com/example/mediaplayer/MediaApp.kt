@@ -1,6 +1,8 @@
 package com.example.mediaplayer
 
 import android.app.Application
+import com.example.mediaplayer.di.dbModule
+import com.example.mediaplayer.di.localDataSourceModule
 import com.example.mediaplayer.di.mediaSourceImpModule
 import com.example.mediaplayer.di.repositoryModule
 import com.example.mediaplayer.di.viewModelModule
@@ -15,6 +17,8 @@ class MediaApp:Application() {
 
     private fun registerKoin() {
         val modules = listOf(
+            dbModule,
+            localDataSourceModule,
             mediaSourceImpModule,
             repositoryModule,
             viewModelModule

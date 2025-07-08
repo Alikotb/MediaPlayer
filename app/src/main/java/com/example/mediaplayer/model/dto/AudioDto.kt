@@ -1,11 +1,14 @@
 package com.example.mediaplayer.model.dto
 
-import android.graphics.Bitmap
 import android.os.Parcelable
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 import kotlinx.android.parcel.Parcelize
 
+@Entity(tableName = "media_Table")
 @Parcelize
 data class AudioDto(
+    @PrimaryKey
     val id: Long,
     val title: String,
     val artist: String?,
@@ -15,5 +18,6 @@ data class AudioDto(
     val size: Long,
     val dateAdded: Long,
     val albumId: Long? = null,
-    val albumArt: Bitmap? = null
-): Parcelable
+    val isFavorite: Boolean = false
+) : Parcelable
+

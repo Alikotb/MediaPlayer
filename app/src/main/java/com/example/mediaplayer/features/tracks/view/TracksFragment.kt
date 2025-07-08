@@ -1,7 +1,6 @@
 package com.example.mediaplayer.features.tracks.view
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,7 +11,6 @@ import com.example.mediaplayer.databinding.FragmentTracksBinding
 import com.example.mediaplayer.features.Response
 import com.example.mediaplayer.features.home.SplashFragmentDirections
 import com.example.mediaplayer.features.tracks.TracksViewModel
-import com.example.mediaplayer.model.dto.AlbumsDto
 import com.example.mediaplayer.model.dto.AudioDto
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -73,7 +71,5 @@ class TracksFragment : Fragment() {
             audioList = list.toTypedArray()
         )
         parentFragment?.findNavController()?.navigate(action)
-
-
     }
 }

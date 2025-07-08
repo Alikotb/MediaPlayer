@@ -1,26 +1,19 @@
 package com.example.mediaplayer.features.folders.view
 
 import android.os.Bundle
-import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
-import com.example.mediaplayer.R
 import com.example.mediaplayer.databinding.FragmentFoldersBinding
-import com.example.mediaplayer.databinding.FragmentTracksBinding
 import com.example.mediaplayer.features.Response
 import com.example.mediaplayer.features.folders.FolderViewModel
 import com.example.mediaplayer.features.home.SplashFragmentDirections
-import com.example.mediaplayer.features.tracks.TracksViewModel
-import com.example.mediaplayer.features.tracks.view.TracksAdapter
-import com.example.mediaplayer.model.dto.AlbumsDto
 import com.example.mediaplayer.model.dto.FolderDto
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
-import kotlin.getValue
 
 class FoldersFragment : Fragment() {
     private val viewModel: FolderViewModel by viewModel()

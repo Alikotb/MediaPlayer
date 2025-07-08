@@ -4,6 +4,8 @@ import android.media.MediaPlayer
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.mediaplayer.model.dto.AudioDto
+import com.example.mediaplayer.model.repository.IRepository
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.NonCancellable.isActive
 import kotlinx.coroutines.delay
@@ -11,7 +13,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 
-class AudioPlayerViewModel : ViewModel() {
+class AudioPlayerViewModel(private val repo: IRepository) : ViewModel() {
 
     private var mediaPlayer: MediaPlayer? = null
 
@@ -21,6 +23,9 @@ class AudioPlayerViewModel : ViewModel() {
     private val _isPlaying = MutableStateFlow(false)
     val isPlaying = _isPlaying.asStateFlow()
 
+    private val _isFav = MutableStateFlow(false)
+    val isFav = _isFav.asStateFlow()
+
     private val _progress = MutableStateFlow(0)
     val progress = _progress.asStateFlow()
 
@@ -29,7 +34,9 @@ class AudioPlayerViewModel : ViewModel() {
 
     private var audioList: List<AudioDto> = emptyList()
     private var updateJob: Job? = null
-
+    fun setFav(value: Boolean) {
+        _isFav.value = value
+    }
     fun initPlayer(audio: AudioDto, list: List<AudioDto>) {
         audioList = list
         _currentAudio.value = audio
@@ -55,7 +62,7 @@ class AudioPlayerViewModel : ViewModel() {
                 playNext()
             }
         }
-
+        checkFav(audio)
         startUpdating()
     }
 
@@ -119,5 +126,24 @@ class AudioPlayerViewModel : ViewModel() {
         _isPlaying.value = false
         stopUpdating()
     }
+
+    fun checkFav(audio: AudioDto) {
+        viewModelScope.launch(Dispatchers.IO) {
+            _isFav.value = repo.isFav(audio)
+        }
+    }
+
+    fun addToDatabase(audio: AudioDto){
+        viewModelScope.launch (Dispatchers.IO){
+            repo.insertAudioFile(audio)
+        }
+    }
+
+    fun deleteFromDatabase(audio: AudioDto){
+        viewModelScope.launch (Dispatchers.IO){
+            repo.deleteMediaFile(audio)
+        }
+    }
+
 
 }

@@ -17,7 +17,6 @@ import kotlinx.coroutines.launch
 import org.koin.android.ext.android.inject
 
 class AudioPlayerFragment : Fragment() {
-    private var isFav = true
     private val viewModel: AudioPlayerViewModel by inject()
     private var binding: FragmentAudioPlayerBinding? = null
     override fun onCreateView(
@@ -77,13 +76,27 @@ class AudioPlayerFragment : Fragment() {
             viewModel.playPauseToggle()
         }
 
-        binding?.favBtn?.setOnClickListener {
-            isFav = !isFav
-            val newIcon =
-                if (isFav) R.drawable.baseline_favorite_24 else R.drawable.outline_favorite_24
-            binding?.favBtn?.setImageResource(newIcon)
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewModel.isFav.collect { fav ->
+                val newIcon = if (fav) {
+                    R.drawable.baseline_favorite_24
+                } else {
+                    R.drawable.outline_favorite_24
+                }
+                binding?.favBtn?.setImageResource(newIcon)
+            }
         }
 
+        binding?.favBtn?.setOnClickListener {
+            viewModel.isFav.value.let { fav ->
+                if (fav) {
+                    viewModel.deleteFromDatabase(args.audioFile)
+                } else {
+                    viewModel.addToDatabase(args.audioFile)
+                }
+                viewModel.setFav(!fav)
+            }
+        }
         binding?.nextBtn?.setOnClickListener {
             viewModel.playNext()
         }

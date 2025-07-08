@@ -1,14 +1,14 @@
 package com.example.mediaplayer.features.all_audio
 
 import android.os.Bundle
-import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.example.mediaplayer.R
+import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import com.example.mediaplayer.databinding.FragmentAllAudioBinding
 import com.example.mediaplayer.features.tracks.view.TracksAdapter
+import com.example.mediaplayer.model.dto.AudioDto
 
 
 class AllAudioFragment : Fragment() {
@@ -35,10 +35,16 @@ class AllAudioFragment : Fragment() {
         }
 
         binding?.allAudioRecyclerView?.adapter = TracksAdapter(audioFiles){
-
+            navigateToAllAudio(it,audioFiles)
         }
 
+    }
 
-
+    fun navigateToAllAudio(obj: AudioDto,list:List<AudioDto>) {
+        val action = AllAudioFragmentDirections.actionAllAudioFragmentToAudioPlayerFragment(
+            audioFile = obj,
+            audioList = list.toTypedArray()
+        )
+        parentFragment?.findNavController()?.navigate(action)
     }
 }

@@ -51,7 +51,8 @@
             android:layout_height="48dp"
             android:layout_gravity="center"
             android:contentDescription="@string/fav_btn"
-            android:src="@drawable/baseline_favorite_24" />
+            android:src="@drawable/baseline_favorite_24"
+            app:tint="@color/white" />
 
     </FrameLayout>
 

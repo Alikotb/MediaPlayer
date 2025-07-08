@@ -37,7 +37,11 @@
     <fragment
         android:id="@+id/favoriteFragment"
         android:name="com.example.mediaplayer.features.favorite.FavoriteFragment"
-        android:label="FavoriteFragment" />
+        android:label="FavoriteFragment" >
+        <action
+            android:id="@+id/action_favoriteFragment_to_audioPlayerFragment"
+            app:destination="@id/audioPlayerFragment" />
+    </fragment>
     <fragment
         android:id="@+id/foldersFragment"
         android:name="com.example.mediaplayer.features.folders.view.FoldersFragment"
