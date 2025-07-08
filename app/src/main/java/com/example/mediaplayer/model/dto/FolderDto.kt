@@ -1,17 +1,10 @@
 package com.example.mediaplayer.model.dto
 
-import android.graphics.Bitmap
 import android.os.Parcelable
 import kotlinx.android.parcel.Parcelize
-import kotlinx.serialization.Serializable
 
 @Parcelize
-data class AlbumsDto(
-    val albumName:String,
-    val albumImg: Bitmap?=null,
+data class FolderDto(
+    val folderName:String,
     val audioFiles:List<AudioDto>
 ): Parcelable
-
-
-
-

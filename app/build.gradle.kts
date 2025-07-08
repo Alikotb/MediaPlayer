@@ -5,6 +5,10 @@ plugins {
     alias(libs.plugins.kotlin.android)
     id("org.jetbrains.kotlin.plugin.serialization") version "1.9.22"
     kotlin("kapt")
+    id ("kotlin-parcelize")
+    id("androidx.navigation.safeargs.kotlin")
+
+
 }
 
 android {
@@ -53,12 +57,12 @@ dependencies {
     androidTestImplementation(libs.androidx.espresso.core)
 
     implementation("com.airbnb.android:lottie:3.4.0")
-    implementation("androidx.navigation:navigation-fragment:2.5.3")
-    implementation("androidx.navigation:navigation-ui:2.5.3")
     implementation("com.github.sparrow007:carouselrecyclerview:1.2.6")
     implementation ("androidx.constraintlayout:constraintlayout:2.1.4")
 
-
+    val nav_version = "2.7.7" // or whatever version you're using
+    implementation("androidx.navigation:navigation-fragment-ktx:$nav_version")
+    implementation("androidx.navigation:navigation-ui-ktx:$nav_version")
 
     implementation ("androidx.room:room-runtime:2.6.1")
     annotationProcessor ("androidx.room:room-compiler:2.6.1")
@@ -73,4 +77,6 @@ dependencies {
     //koin
     val koin_android_version = "4.0.2"
     implementation("io.insert-koin:koin-android:$koin_android_version")
+
+    implementation("com.github.bumptech.glide:glide:4.16.0")
 }

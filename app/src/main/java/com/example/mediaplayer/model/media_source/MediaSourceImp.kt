@@ -8,7 +8,7 @@ import android.os.Build
 import android.provider.MediaStore
 import com.example.mediaplayer.model.dto.AlbumsDto
 import com.example.mediaplayer.model.dto.AudioDto
-import com.example.mediaplayer.model.dto.FolderDtro
+import com.example.mediaplayer.model.dto.FolderDto
 import java.io.File
 
 class MediaSourceImp(val context: Context): IMediaSource {
@@ -76,7 +76,7 @@ class MediaSourceImp(val context: Context): IMediaSource {
     }
 
 
-    override fun getAllFolders(): List<FolderDtro> {
+    override fun getAllFolders(): List<FolderDto> {
         val folderMap = mutableMapOf<String, MutableList<AudioDto>>()
 
         for (audio in loadAllAudio()) {
@@ -85,7 +85,7 @@ class MediaSourceImp(val context: Context): IMediaSource {
         }
 
         return folderMap.map { (folderName, audios) ->
-            FolderDtro(folderName, audios)
+            FolderDto(folderName, audios)
         }
     }
 

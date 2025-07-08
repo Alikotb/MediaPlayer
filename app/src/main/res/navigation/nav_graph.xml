@@ -19,19 +19,30 @@
         <action
             android:id="@+id/action_splashFragment_to_searchFragment"
             app:destination="@id/searchFragment" />
+        <action
+            android:id="@+id/action_splashFragment_to_allAudioFragment"
+            app:destination="@id/allAudioFragment" />
     </fragment>
     <fragment
         android:id="@+id/albumsFragment"
-        android:name="com.example.mediaplayer.features.albums.AlbumsFragment"
-        android:label="AlbumsFragment" />
+        android:name="com.example.mediaplayer.features.albums.view.AlbumsFragment"
+        android:label="AlbumsFragment" >
+        <action
+            android:id="@+id/action_albumsFragment_to_allAudioFragment"
+            app:destination="@id/allAudioFragment" />
+    </fragment>
     <fragment
         android:id="@+id/favoriteFragment"
         android:name="com.example.mediaplayer.features.favorite.FavoriteFragment"
         android:label="FavoriteFragment" />
     <fragment
         android:id="@+id/foldersFragment"
-        android:name="com.example.mediaplayer.features.folders.FoldersFragment"
-        android:label="FoldersFragment" />
+        android:name="com.example.mediaplayer.features.folders.view.FoldersFragment"
+        android:label="FoldersFragment" >
+        <action
+            android:id="@+id/action_foldersFragment_to_allAudioFragment"
+            app:destination="@id/allAudioFragment" />
+    </fragment>
     <fragment
         android:id="@+id/historyFragment"
         android:name="com.example.mediaplayer.features.history.HistoryFragment"
@@ -49,4 +60,17 @@
         android:name="com.example.mediaplayer.MainActivity"
         android:label="fragment_folders"
         tools:layout="@layout/fragment_folders" />
+    <fragment
+        android:id="@+id/allAudioFragment"
+        android:name="com.example.mediaplayer.features.all_audio.AllAudioFragment"
+        android:label="AllAudioFragment" >
+        <argument
+            android:name="album"
+            app:argType="com.example.mediaplayer.model.dto.AlbumsDto"
+            app:nullable="true" />
+        <argument
+            android:name="folder"
+            app:argType="com.example.mediaplayer.model.dto.FolderDto"
+            app:nullable="true" />
+    </fragment>
 </navigation>

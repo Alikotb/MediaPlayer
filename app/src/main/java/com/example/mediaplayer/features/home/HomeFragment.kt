@@ -11,8 +11,8 @@ import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.example.mediaplayer.R
 import com.example.mediaplayer.features.tracks.view.TracksFragment
 import com.example.mediaplayer.databinding.FragmentHomeBinding
-import com.example.mediaplayer.features.albums.AlbumsFragment
-import com.example.mediaplayer.features.folders.FoldersFragment
+import com.example.mediaplayer.features.albums.view.AlbumsFragment
+import com.example.mediaplayer.features.folders.view.FoldersFragment
 import com.google.android.material.tabs.TabLayoutMediator
 
 class SplashFragment : Fragment() {
