@@ -22,6 +22,9 @@
         <action
             android:id="@+id/action_splashFragment_to_allAudioFragment"
             app:destination="@id/allAudioFragment" />
+        <action
+            android:id="@+id/action_splashFragment_to_audioPlayerFragment"
+            app:destination="@id/audioPlayerFragment" />
     </fragment>
     <fragment
         android:id="@+id/albumsFragment"
@@ -54,7 +57,11 @@
     <fragment
         android:id="@+id/tracksFragment"
         android:name="com.example.mediaplayer.features.tracks.view.TracksFragment"
-        android:label="TracksFragment" />
+        android:label="TracksFragment" >
+        <action
+            android:id="@+id/action_tracksFragment_to_audioPlayerFragment"
+            app:destination="@id/audioPlayerFragment" />
+    </fragment>
     <activity
         android:id="@+id/mainActivity"
         android:name="com.example.mediaplayer.MainActivity"
@@ -72,5 +79,20 @@
             android:name="folder"
             app:argType="com.example.mediaplayer.model.dto.FolderDto"
             app:nullable="true" />
+        <action
+            android:id="@+id/action_allAudioFragment_to_audioPlayerFragment"
+            app:destination="@id/audioPlayerFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/audioPlayerFragment"
+        android:name="com.example.mediaplayer.features.audio_player.AudioPlayerFragment"
+        android:label="AudioPlayerFragment" >
+        <argument
+            android:name="audio_file"
+            app:argType="com.example.mediaplayer.model.dto.AudioDto"
+            app:nullable="true" />
+        <argument
+            android:name="audioList"
+            app:argType="com.example.mediaplayer.model.dto.AudioDto[]" />
     </fragment>
 </navigation>
