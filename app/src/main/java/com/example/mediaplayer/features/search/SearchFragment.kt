@@ -35,6 +35,9 @@ class SearchFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val searchView = binding!!.searchView
+        binding?.backBtn?.setOnClickListener {
+            parentFragment?.findNavController()?.navigateUp()
+        }
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
                 query?.let {

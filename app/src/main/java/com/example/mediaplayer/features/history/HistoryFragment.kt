@@ -30,6 +30,9 @@ class HistoryFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        binding?.backBtn?.setOnClickListener {
+            parentFragment?.findNavController()?.navigateUp()
+        }
         viewLifecycleOwner.lifecycleScope.launch {
             if (!isLoaded) {
                 viewModel.getAllHistoryFiles()

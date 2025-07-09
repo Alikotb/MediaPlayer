@@ -8,4 +8,6 @@
     <string name="albums">Albums!</string>
     <string name="tracks">Tracks!</string>
     <string name="folders">Folders!</string>
+    <string name="history">History</string>
+    <string name="favorite">Favorite</string>
 </resources>

@@ -31,7 +31,9 @@ class FavoriteFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-
+        binding?.backBtn?.setOnClickListener {
+            parentFragment?.findNavController()?.navigateUp()
+        }
         if (!isLoaded) {
             viewModel.getAllFavMedia()
             isLoaded = true

@@ -34,6 +34,21 @@ class AllAudioFragment : Fragment() {
             else -> emptyList()
         }
 
+        val header = when{
+            album != null -> album.albumName
+            folder != null -> folder.folderName
+            else -> ""
+        }
+
+        val displayedName = if (header.isNotBlank() && header.length > 20) {
+            header.substring(0, 20) + "..."
+        } else {
+            header
+        }
+        binding?.titleTv?.text = displayedName
+        binding?.backBtn?.setOnClickListener {
+            parentFragment?.findNavController()?.navigateUp()
+        }
         binding?.allAudioRecyclerView?.adapter = TracksAdapter(audioFiles){
             navigateToAllAudio(it,audioFiles)
         }
