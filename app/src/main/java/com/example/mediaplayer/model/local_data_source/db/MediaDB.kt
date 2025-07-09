@@ -5,9 +5,10 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.example.mediaplayer.model.dto.AudioDto
+import com.example.mediaplayer.model.dto.HistoryDto
 import com.example.mediaplayer.model.local_data_source.dao.MediaDao
 
-@Database(entities = [AudioDto::class], version = 1)
+@Database(entities = [AudioDto::class, HistoryDto::class], version = 2)
 abstract class MediaDB : RoomDatabase() {
     abstract fun getDao(): MediaDao
     companion object {

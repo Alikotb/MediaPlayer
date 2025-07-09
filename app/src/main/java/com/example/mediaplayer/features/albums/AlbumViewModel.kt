@@ -22,7 +22,17 @@ class AlbumViewModel(private val repo: IRepository) : ViewModel() {
                     _uiState.emit(Response.Error(it.message ?: "Error"))
 
                 }.collect {
-                    _uiState.emit(Response.Success(it))
+                    val list = it.sortedWith(compareBy<AlbumsDto> { item ->
+                        val firstChar = item.albumName.firstOrNull() ?: ' '
+                        when {
+                            firstChar in 'A'..'Z' || firstChar in 'a'..'z' -> 0
+                            firstChar in '\u0600'..'\u06FF' -> 1
+                            else -> 2
+                        }
+                    }.thenBy { item ->
+                        item.albumName.lowercase()
+                    })
+                    _uiState.emit(Response.Success(list))
 
                 }
 

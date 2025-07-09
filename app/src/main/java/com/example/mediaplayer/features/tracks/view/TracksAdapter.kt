@@ -23,6 +23,7 @@ class TracksAdapter(
     override fun onBindViewHolder(holder: TrackViewHolder, position: Int) {
         val track = tracks[position]
         holder.binding.trackNameTv.text = track.title
+        holder.binding.trackArtistNameTv.text = track.artist
         holder.binding.trackCardItem.setOnClickListener {
             onAudioItemClick(track)
         }

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="screen_background">#F0000000</color>
+    <color name="search_background">#121212</color>
+    <color name="search_text">#FFFFFF</color>
+    <color name="search_hint">#BBBBBB</color>
+    <color name="search_icon">#FFFFFF</color>
+</resources>

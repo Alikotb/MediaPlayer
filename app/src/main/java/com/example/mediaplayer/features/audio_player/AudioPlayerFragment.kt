@@ -119,6 +119,8 @@ class AudioPlayerFragment : Fragment() {
         }
     }
 
+
+
     override fun onDestroyView() {
         viewModel.stop()
         binding = null

@@ -2,8 +2,15 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="red">#AF0000</color>
-    <color name="blue">#0166FF</color>
-    <color name="orange">#FF7701</color>
+    <color name="red">#eb3b2e</color>
+    <color name="blue">#0166ff</color>
+    <color name="orange">#ff7701</color>
     <color name="transpernet">#19000000</color>
+
+    <color name="screen_background">#FFFFFFFF</color>
+
+    <color name="search_background">#FFFFFF</color>
+    <color name="search_text">#000000</color>
+    <color name="search_hint">#888888</color>
+    <color name="search_icon">#000000</color>
 </resources>

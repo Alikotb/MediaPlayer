@@ -1,6 +1,7 @@
 package com.example.mediaplayer.model.local_data_source.data_source
 
 import com.example.mediaplayer.model.dto.AudioDto
+import com.example.mediaplayer.model.dto.HistoryDto
 import com.example.mediaplayer.model.local_data_source.dao.MediaDao
 
 class LocalDataSourceImp(private val db: MediaDao): ILocalDataSource {
@@ -17,5 +18,11 @@ class LocalDataSourceImp(private val db: MediaDao): ILocalDataSource {
 
     override suspend fun isFav(audio: AudioDto): Boolean {
         return db.getMediaById(audio.id) != null
+    }
+
+    override fun getAllHistory() = db.getAllHistory()
+
+    override suspend fun insertHistoryFile(historyDto: HistoryDto) {
+        db.insertHistoryFile(historyDto)
     }
 }

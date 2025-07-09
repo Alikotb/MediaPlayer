@@ -6,6 +6,7 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.example.mediaplayer.model.dto.AudioDto
+import com.example.mediaplayer.model.dto.HistoryDto
 import kotlinx.coroutines.flow.Flow
 
 @Dao
@@ -18,5 +19,12 @@ interface MediaDao {
     suspend fun deleteMediaFile(audio: AudioDto)
     @Query("SELECT * FROM media_Table WHERE id = :audioId LIMIT 1")
     suspend fun getMediaById(audioId: Long): AudioDto?
+
+
+    @Insert(onConflict = OnConflictStrategy.Companion.IGNORE)
+    suspend fun insertHistoryFile(historyDto: HistoryDto)
+    @Query("SELECT * FROM history_Table")
+    fun getAllHistory(): Flow<List<HistoryDto>>
+
 
 }

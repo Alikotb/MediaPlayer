@@ -3,6 +3,7 @@ package com.example.mediaplayer.features.audio_player
 import android.media.MediaPlayer
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.mediaplayer.mapper.toHistoryDto
 import com.example.mediaplayer.model.dto.AudioDto
 import com.example.mediaplayer.model.repository.IRepository
 import kotlinx.coroutines.Dispatchers
@@ -44,6 +45,7 @@ class AudioPlayerViewModel(private val repo: IRepository) : ViewModel() {
     }
 
     private fun preparePlayer(audio: AudioDto) {
+        addToHistory()
         mediaPlayer?.stop()
         mediaPlayer?.release()
         mediaPlayer = null
@@ -144,6 +146,10 @@ class AudioPlayerViewModel(private val repo: IRepository) : ViewModel() {
             repo.deleteMediaFile(audio)
         }
     }
-
+    private fun addToHistory(){
+        viewModelScope.launch (Dispatchers.IO){
+            repo.insertHistoryFile(_currentAudio.value!!.toHistoryDto())
+        }
+    }
 
 }

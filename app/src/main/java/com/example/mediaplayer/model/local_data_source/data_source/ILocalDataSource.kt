@@ -2,6 +2,7 @@ package com.example.mediaplayer.model.local_data_source.data_source
 
 
 import com.example.mediaplayer.model.dto.AudioDto
+import com.example.mediaplayer.model.dto.HistoryDto
 import kotlinx.coroutines.flow.Flow
 
 interface ILocalDataSource {
@@ -9,4 +10,8 @@ interface ILocalDataSource {
     fun getAllMedia(): Flow<List<AudioDto>>
     suspend fun deleteMediaFile(audio: AudioDto)
     suspend fun isFav(audio: AudioDto): Boolean
+
+    fun getAllHistory(): Flow<List<HistoryDto>>
+
+    suspend fun insertHistoryFile(historyDto: HistoryDto)
 }

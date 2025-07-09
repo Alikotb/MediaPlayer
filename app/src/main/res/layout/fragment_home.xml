@@ -113,9 +113,10 @@
         android:layout_marginTop="24dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/search_card"
-        app:tabIndicatorColor="@color/black"
-        app:tabSelectedTextColor="@color/black"
+        app:tabIndicatorColor="@color/search_text"
+        app:tabSelectedTextColor="@color/search_text"
         app:tabTextColor="#6F6E6E"
+        android:background="@color/screen_background"
 
         />
 
