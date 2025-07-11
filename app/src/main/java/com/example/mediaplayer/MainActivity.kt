@@ -103,10 +103,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-//    override fun onNewIntent(intent: Intent?) {
-//        super.onNewIntent(intent)
-//        handleIntent(intent)
-//    }
+
 
     private fun handleIntent(intent: Intent?) {
         val audio = intent?.getParcelableExtra<AudioDto>("audio")
@@ -130,3 +127,5 @@ class MainActivity : AppCompatActivity() {
 
 
 }
+
+

@@ -6,6 +6,6 @@ object MediaConstant {
     const val PREVIOUS = "prev"
     const val NEXT = "next"
     const val PLAY_PAUSE = "play_pause"
-    const val PAUSE = "pause"
+    const val STOP = "close"
 
 }
