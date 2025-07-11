@@ -3,15 +3,15 @@ package com.example.mediaplayer.utils
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.media.MediaMetadataRetriever
+import androidx.core.graphics.scale
 
-fun getAlbumArt(path: String): Bitmap? {
-    return try {
-        val retriever = MediaMetadataRetriever()
-        retriever.setDataSource(path)
-        val art = retriever.embeddedPicture
-        retriever.release()
-        art?.let { BitmapFactory.decodeByteArray(it, 0, it.size) }
-    } catch (e: Exception) {
-        null
+fun getAlbumArt(path: String, size: Int = 256): Bitmap? {
+        val mmr = MediaMetadataRetriever()
+        mmr.setDataSource(path)
+        val art = mmr.embeddedPicture
+        return if (art != null) {
+            val original = BitmapFactory.decodeByteArray(art, 0, art.size)
+            original.scale(size, size)
+        } else null
     }
-}
+

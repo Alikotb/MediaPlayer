@@ -1,6 +1,7 @@
 package com.example.mediaplayer
 
 import android.Manifest
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.content.res.Configuration
 import android.os.Build
@@ -8,12 +9,14 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
-import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.WindowInsetsControllerCompat
+import androidx.navigation.fragment.NavHostFragment
+import com.example.mediaplayer.features.home.SplashFragmentDirections
+import com.example.mediaplayer.model.dto.AudioDto
 
 class MainActivity : AppCompatActivity() {
     companion object {
@@ -32,8 +35,17 @@ class MainActivity : AppCompatActivity() {
             v.setPadding(0, systemBars.top, 0, systemBars.bottom)
             insets
         }
+
+        window.decorView.post {
+            handleIntent(intent)
+        }
         checkAndRequestAudioPermission()
     }
+    override fun onNewIntent(intent: Intent) {
+        super.onNewIntent(intent)
+        handleIntent(intent)
+    }
+
     private fun checkAndRequestAudioPermission() {
         val permissionsToRequest = mutableListOf<String>()
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
@@ -87,6 +99,31 @@ class MainActivity : AppCompatActivity() {
                         }
                     }
                 }
+            }
+        }
+    }
+
+//    override fun onNewIntent(intent: Intent?) {
+//        super.onNewIntent(intent)
+//        handleIntent(intent)
+//    }
+
+    private fun handleIntent(intent: Intent?) {
+        val audio = intent?.getParcelableExtra<AudioDto>("audio")
+        val audioList = intent?.getParcelableArrayListExtra<AudioDto>("audioList")
+
+        if (audio != null && audioList != null) {
+            val navHostFragment =
+                supportFragmentManager.findFragmentById(R.id.nav_graph) as NavHostFragment
+            val navController = navHostFragment.navController
+
+            val action = SplashFragmentDirections.actionSplashFragmentToAudioPlayerFragment(
+                audioFile = audio,
+                audioList = audioList.toTypedArray()
+            )
+
+            if (navController.currentDestination?.id != R.id.audioPlayerFragment) {
+                navController.navigate(action)
             }
         }
     }

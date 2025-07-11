@@ -1,21 +1,20 @@
 package com.example.mediaplayer.service
 
-import android.app.NotificationManager
 import android.app.PendingIntent
 import android.app.Service
 import android.content.Intent
-import android.graphics.BitmapFactory
 import android.media.MediaPlayer
 import android.os.Binder
 import android.os.Build
 import android.os.IBinder
 import android.support.v4.media.session.MediaSessionCompat
-import android.util.Log
 import androidx.core.app.NotificationCompat
 import androidx.core.net.toUri
+import com.example.mediaplayer.MainActivity
 import com.example.mediaplayer.R
 import com.example.mediaplayer.model.dto.AudioDto
 import com.example.mediaplayer.utils.MediaConstant
+import com.example.mediaplayer.utils.getAlbumArt
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
@@ -32,9 +31,7 @@ class MyMediaService : Service() {
             this@MyMediaService.tracksList = list.toMutableList()
             this@MyMediaService.currentTrack.value = audioDto
         }
-        fun currentDuration() = this@MyMediaService.currentDuration
-        fun maxDuration() = this@MyMediaService.maxDuration
-        fun isPlaying() = this@MyMediaService.isPlaying
+
     }
     val binder = MediaBinder()
     var currentTrack = MutableStateFlow<AudioDto?>(null)
@@ -51,8 +48,7 @@ class MyMediaService : Service() {
     }
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
-        Log.d("MyMediaService", "onStartCommand called with action: ${intent?.action}")
-        // ↓↓↓ Start dummy foreground notification IMMEDIATELY
+
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             val dummyNotification = NotificationCompat.Builder(this, MediaConstant.CHANNEL_ID)
                 .setContentTitle("Preparing audio...")
@@ -81,13 +77,8 @@ class MyMediaService : Service() {
         mediaPlayer.seekTo(position)
     }
 
-    fun setOnCompletionListener(listener: () -> Unit) {
-        mediaPlayer.setOnCompletionListener {
-            listener()
-        }
-    }
+
     fun play(track: AudioDto) {
-        Log.d("MyMediaService", "Calling play() for ${track.title}")
 
         mediaPlayer.reset()
         mediaPlayer = MediaPlayer()
@@ -97,7 +88,6 @@ class MyMediaService : Service() {
             next()
         }
         mediaPlayer.setOnPreparedListener {
-            Log.d("MyMediaService", "MediaPlayer is prepared, starting playback")
 
             mediaPlayer.start()
             sendNotification(track)
@@ -142,7 +132,20 @@ class MyMediaService : Service() {
         }
     }
     private fun sendNotification(track: AudioDto) {
-        Log.d("MyMediaService", "sendNotification: $track")
+
+        val openPlayerIntent = Intent(this, MainActivity::class.java).apply {
+            flags = Intent.FLAG_ACTIVITY_SINGLE_TOP or Intent.FLAG_ACTIVITY_CLEAR_TOP
+            action = "OPEN_PLAYER"
+            putExtra("audio", track)
+        }
+
+        val contentPendingIntent = PendingIntent.getActivity(
+            this,
+            0,
+            openPlayerIntent,
+            PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
+        )
+
         val session = MediaSessionCompat(this, "music")
         isPlaying.update { mediaPlayer.isPlaying }
         val style = androidx.media.app.NotificationCompat.MediaStyle()
@@ -154,6 +157,8 @@ class MyMediaService : Service() {
             .setContentTitle(track.title)
             .setContentText(track.artist)
             .setSmallIcon(R.drawable.music)
+            .setContentIntent(contentPendingIntent)
+            .setAutoCancel(false)
             .addAction(
                 R.drawable.baseline_skip_previous_24,
                 MediaConstant.PREVIOUS,
@@ -169,7 +174,7 @@ class MyMediaService : Service() {
                 MediaConstant.NEXT,
                 createNextPendingIntent()
             )
-            .setLargeIcon(BitmapFactory.decodeResource(resources, R.drawable.music))
+            .setLargeIcon(getAlbumArt(track.path))
             .build()
         startForeground(1, notification)
     }
