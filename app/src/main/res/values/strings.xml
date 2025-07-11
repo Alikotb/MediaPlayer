@@ -10,4 +10,10 @@
     <string name="folders">Folders!</string>
     <string name="history">History</string>
     <string name="favorite">Favorite</string>
+    <string name="todo">TODO</string>
+    <string name="alasfour">Alasfour - العصفور</string>
+    <string name="download">Download</string>
+    <string name="_10_song_s">10 song(s)</string>
+    <string name="track_title">Track Title</string>
+    <string name="artist_name">Artist Name</string>
 </resources>
