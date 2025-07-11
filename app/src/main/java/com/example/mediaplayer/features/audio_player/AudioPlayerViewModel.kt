@@ -15,15 +15,11 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 
 class AudioPlayerViewModel(private val repo: IRepository) : ViewModel() {
-
     private var mediaPlayer: MediaPlayer? = null
-
     private val _currentAudio = MutableStateFlow<AudioDto?>(null)
     val currentAudio = _currentAudio.asStateFlow()
-
     private val _isPlaying = MutableStateFlow(false)
     val isPlaying = _isPlaying.asStateFlow()
-
     private val _isFav = MutableStateFlow(false)
     val isFav = _isFav.asStateFlow()
 
@@ -43,7 +39,6 @@ class AudioPlayerViewModel(private val repo: IRepository) : ViewModel() {
         _currentAudio.value = audio
         preparePlayer(audio)
     }
-
     private fun preparePlayer(audio: AudioDto) {
         addToHistory()
         mediaPlayer?.stop()

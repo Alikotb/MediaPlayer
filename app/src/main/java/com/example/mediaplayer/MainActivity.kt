@@ -5,8 +5,10 @@ import android.content.pm.PackageManager
 import android.content.res.Configuration
 import android.os.Build
 import android.os.Bundle
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
+import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowCompat
@@ -14,21 +16,14 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.WindowInsetsControllerCompat
 
 class MainActivity : AppCompatActivity() {
-
     companion object {
         const val REQUEST_CODE_AUDIO_PERMISSION = 101
     }
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        // لازم قبل setContentView
         WindowCompat.setDecorFitsSystemWindows(window, false)
-
         setContentView(R.layout.activity_main)
-
         window.statusBarColor = ContextCompat.getColor(this, R.color.screen_background)
-
         val isDarkMode = resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK == Configuration.UI_MODE_NIGHT_YES
         WindowInsetsControllerCompat(window, window.decorView).isAppearanceLightStatusBars = !isDarkMode
 
@@ -37,37 +32,64 @@ class MainActivity : AppCompatActivity() {
             v.setPadding(0, systemBars.top, 0, systemBars.bottom)
             insets
         }
-
         checkAndRequestAudioPermission()
     }
-
-
     private fun checkAndRequestAudioPermission() {
-        val permission = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+        val permissionsToRequest = mutableListOf<String>()
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            if (ContextCompat.checkSelfPermission(this, Manifest.permission.POST_NOTIFICATIONS)
+                != PackageManager.PERMISSION_GRANTED
+            ) {
+                permissionsToRequest.add(Manifest.permission.POST_NOTIFICATIONS)
+            }
+        }
+
+        val audioPermission = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
             Manifest.permission.READ_MEDIA_AUDIO
         } else {
             Manifest.permission.READ_EXTERNAL_STORAGE
         }
 
-        if (ContextCompat.checkSelfPermission(
-                this,
-                permission
-            ) != PackageManager.PERMISSION_GRANTED
+        if (ContextCompat.checkSelfPermission(this, audioPermission)
+            != PackageManager.PERMISSION_GRANTED
         ) {
+            permissionsToRequest.add(audioPermission)
+        }
+
+        if (permissionsToRequest.isNotEmpty()) {
             ActivityCompat.requestPermissions(
-                this, arrayOf(permission), REQUEST_CODE_AUDIO_PERMISSION
+                this,
+                permissionsToRequest.toTypedArray(),
+                REQUEST_CODE_AUDIO_PERMISSION
             )
         }
     }
 
     override fun onRequestPermissionsResult(
-        requestCode: Int, permissions: Array<out String>, grantResults: IntArray
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
     ) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+
         if (requestCode == REQUEST_CODE_AUDIO_PERMISSION) {
-            if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-            } else {
+            for (i in permissions.indices) {
+                when (permissions[i]) {
+                    Manifest.permission.READ_MEDIA_AUDIO,
+                    Manifest.permission.READ_EXTERNAL_STORAGE -> {
+                        if (grantResults[i] != PackageManager.PERMISSION_GRANTED) {
+                            Toast.makeText(this, "Audio access permission denied", Toast.LENGTH_SHORT).show()
+                        }
+                    }
+                    Manifest.permission.POST_NOTIFICATIONS -> {
+                        if (grantResults[i] != PackageManager.PERMISSION_GRANTED) {
+                            Toast.makeText(this, "Notification permission denied", Toast.LENGTH_SHORT).show()
+                        }
+                    }
+                }
             }
         }
     }
+
+
 }
