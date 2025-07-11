@@ -39,15 +39,24 @@ class FavoriteFragment : Fragment() {
             isLoaded = true
 
         }
-
         viewLifecycleOwner.lifecycleScope.launch {
             viewModel.uiState.collect { state ->
                 when (state) {
                     is Response.Loading -> {
-
+                        binding?.shimmerLayout?.visibility = View.VISIBLE
+                        binding?.shimmerLayout?.startShimmer()
+                        binding?.favRecyclerView?.visibility = View.GONE
                     }
-
                     is Response.Success -> {
+                        binding?.shimmerLayout?.stopShimmer()
+                        binding?.shimmerLayout?.visibility = View.GONE
+                        binding?.favRecyclerView?.visibility = View.VISIBLE
+                        if(state.data.isEmpty()){
+                            binding?.lottieAnimationView?.visibility = View.VISIBLE
+                        }else{
+                            binding?.lottieAnimationView?.visibility = View.GONE
+
+                        }
                         binding?.favRecyclerView?.adapter = TracksAdapter(state.data) {
                             navigateToAudioPlayer(obj = it,state.data)
                         }
@@ -55,6 +64,9 @@ class FavoriteFragment : Fragment() {
                     }
 
                     is Response.Error -> {
+                        binding?.shimmerLayout?.stopShimmer()
+                        binding?.shimmerLayout?.visibility = View.GONE
+                        binding?.favRecyclerView?.visibility = View.GONE
                         return@collect
                     }
                 }

@@ -1,50 +1,67 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/track_card_item"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginHorizontal="16dp"
-    android:layout_marginVertical= "16dp">
-    <TextView
-        android:id="@+id/track_name_tv"
+    android:layout_marginVertical="4dp"
+    android:elevation="4dp"
+    app:cardCornerRadius="4dp"
+    app:cardElevation="4dp"
+    app:cardBackgroundColor="@color/search_background">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:maxLines="1"
-        android:textSize="16sp"
-        android:textStyle="bold"
-        android:ellipsize="end"
-        android:textAlignment="viewStart"
-        android:textDirection="inherit"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:padding="8dp">
 
-    <ImageView
-        android:scaleType="centerCrop"
+        <TextView
+            android:id="@+id/track_name_tv"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/track_title"
 
-        android:id="@+id/icon"
-        android:layout_width="24dp"
-        android:layout_height="24dp"
-        android:layout_marginTop="4dp"
-        android:contentDescription=""
-        android:src="@drawable/outline_person_pin_circle_24"
-        app:layout_constraintStart_toStartOf="@+id/track_name_tv"
-        app:layout_constraintTop_toBottomOf="@+id/track_name_tv"
-        app:tint="@color/search_text" />
+            android:textAlignment="viewStart"
+            android:textDirection="inherit"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:textColor="@color/search_text"
+            android:maxLines="1"
+            android:ellipsize="end"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
 
-    <TextView
-        android:id="@+id/track_artist_name_tv"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:maxLines="1"
-        android:textSize="13sp"
-        android:layout_marginStart="8dp"
-        android:textAlignment="viewStart"
-        android:textDirection="inherit"
-        android:ellipsize="end"
-        app:layout_constraintBottom_toBottomOf="@+id/icon"
-        app:layout_constraintStart_toEndOf="@+id/icon"
-        app:layout_constraintTop_toTopOf="@+id/icon"
+        <ImageView
+            android:id="@+id/icon"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="4dp"
+            android:src="@drawable/outline_person_pin_circle_24"
+            android:contentDescription="@string/todo"
+            app:layout_constraintTop_toBottomOf="@id/track_name_tv"
+            app:layout_constraintStart_toStartOf="parent"
+            app:tint="@color/search_text" />
 
-        />
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <TextView
+            android:id="@+id/track_artist_name_tv"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/artist_name"
+            android:textSize="14sp"
+            android:textColor="@android:color/darker_gray"
+            android:maxLines="1"
+            android:ellipsize="end"
+
+            android:textAlignment="viewStart"
+            android:textDirection="inherit"
+            app:layout_constraintTop_toTopOf="@id/icon"
+            app:layout_constraintBottom_toBottomOf="@id/icon"
+            app:layout_constraintStart_toEndOf="@id/icon"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</com.google.android.material.card.MaterialCardView>
+
+

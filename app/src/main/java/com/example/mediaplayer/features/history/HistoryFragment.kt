@@ -41,10 +41,22 @@ class HistoryFragment : Fragment() {
             viewModel.uiState.collect { state ->
                 when (state) {
                     is Response.Loading -> {
-
+                        binding?.shimmerLayout?.visibility = View.VISIBLE
+                        binding?.shimmerLayout?.startShimmer()
+                        binding?.historyRecyclerView?.visibility = View.GONE
                     }
 
                     is Response.Success -> {
+
+                        binding?.shimmerLayout?.stopShimmer()
+                        binding?.shimmerLayout?.visibility = View.GONE
+                        binding?.historyRecyclerView?.visibility = View.VISIBLE
+                        if(state.data.isEmpty()){
+                            binding?.lottieAnimationView?.visibility = View.VISIBLE
+                        }else{
+                            binding?.lottieAnimationView?.visibility = View.GONE
+
+                        }
                         binding?.historyRecyclerView?.adapter = TracksAdapter(state.data) {
                             navigateToAudioPlayer(obj = it,state.data)
                         }
@@ -52,6 +64,10 @@ class HistoryFragment : Fragment() {
                     }
 
                     is Response.Error -> {
+
+                        binding?.shimmerLayout?.stopShimmer()
+                        binding?.shimmerLayout?.visibility = View.GONE
+                        binding?.historyRecyclerView?.visibility = View.GONE
                         return@collect
                     }
                 }

@@ -11,6 +11,7 @@
         android:layout_height="36dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
+        android:contentDescription="@string/todo"
         android:src="@drawable/outline_stat_minus_1_24"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -22,6 +23,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
+        android:contentDescription="@string/todo"
         android:src="@drawable/outline_more_vert_24"
         app:layout_constraintBottom_toBottomOf="@+id/back_btn"
         app:layout_constraintEnd_toEndOf="parent"
@@ -43,6 +45,7 @@
             android:layout_width="150dp"
             android:layout_height="150dp"
             android:layout_gravity="center"
+            android:contentDescription="@string/todo"
             android:src="@drawable/cylinder" />
     </FrameLayout>
 
@@ -60,7 +63,7 @@
         android:marqueeRepeatLimit="marquee_forever"
         android:scrollHorizontally="true"
         android:singleLine="true"
-        android:text="Alasfour - العصفور"
+        android:text="@string/alasfour"
         android:textAlignment="viewStart"
         android:textColor="@color/white"
         android:textSize="22sp"
@@ -75,7 +78,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
-        android:text="Alasfour- العصفور"
+        android:text="@string/alasfour"
         android:textColor="@color/white"
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
@@ -86,6 +89,7 @@
         android:layout_width="48dp"
         android:layout_height="48dp"
         android:layout_marginEnd="16dp"
+        android:contentDescription="@string/todo"
         android:src="@drawable/baseline_favorite_24"
         app:layout_constraintBottom_toBottomOf="@+id/track_name_audioPlayer_tv"
         app:layout_constraintEnd_toEndOf="parent"
@@ -97,7 +101,6 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="48dp"
-        android:text="00:00"
         android:textColor="@color/white"
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
@@ -109,7 +112,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
-        android:text="00:00"
         android:textColor="@color/white"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="@+id/start_time_tv"
@@ -123,6 +125,8 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="4dp"
         android:layout_marginEnd="8dp"
+        android:backgroundTint="@color/white"
+        android:progressBackgroundTint="@color/white"
         android:progressTint="@color/white"
         android:thumbTint="@color/white"
         app:layout_constraintBottom_toBottomOf="@id/start_time_tv"
@@ -134,18 +138,22 @@
         android:id="@+id/previous_btn"
         android:layout_width="48dp"
         android:layout_height="48dp"
-
         android:layout_marginTop="36dp"
+        android:autoMirrored="true"
+        android:contentDescription="@string/todo"
+        android:layoutDirection="locale"
         android:src="@drawable/baseline_skip_previous_24"
         app:layout_constraintStart_toStartOf="@+id/image_music"
         app:layout_constraintTop_toBottomOf="@+id/seekBar" />
 
     <ImageView
         android:id="@+id/play_pause_btn"
+
         android:layout_width="48dp"
         android:layout_height="48dp"
-
         android:layout_marginTop="36dp"
+
+        android:contentDescription="@string/todo"
         android:src="@drawable/baseline_play_arrow_24"
         app:layout_constraintEnd_toEndOf="@+id/image_music"
         app:layout_constraintStart_toStartOf="@+id/image_music"
@@ -153,10 +161,13 @@
 
     <ImageView
         android:id="@+id/next_btn"
+
         android:layout_width="48dp"
         android:layout_height="48dp"
-
         android:layout_marginTop="36dp"
+        android:autoMirrored="true"
+        android:contentDescription="@string/todo"
+        android:layoutDirection="locale"
         android:src="@drawable/baseline_skip_next_24"
         app:layout_constraintEnd_toEndOf="@+id/image_music"
         app:layout_constraintTop_toBottomOf="@+id/seekBar" />

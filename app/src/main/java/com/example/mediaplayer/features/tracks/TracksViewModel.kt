@@ -14,7 +14,9 @@ import kotlinx.coroutines.launch
 class TracksViewModel(private val repo: IRepository) : ViewModel() {
     private var _uiState = MutableStateFlow<Response<List<AudioDto>>>(Response.Loading)
     val uiState = _uiState.asStateFlow()
-
+    init {
+        getAllTracks() // inside ViewModel constructor
+    }
     fun getAllTracks() {
         viewModelScope.launch(Dispatchers.IO) {
             try {

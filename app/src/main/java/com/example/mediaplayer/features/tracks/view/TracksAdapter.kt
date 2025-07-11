@@ -19,15 +19,33 @@ class TracksAdapter(
             .inflate(inflater, parent, false)
         return TrackViewHolder(binding)
     }
-
     override fun onBindViewHolder(holder: TrackViewHolder, position: Int) {
         val track = tracks[position]
-        holder.binding.trackNameTv.text = track.title
-        holder.binding.trackArtistNameTv.text = track.artist
+
+        val artist = track.artist?.takeIf { it.isNotBlank() } ?: "Unknown Artist"
+        val album = track.album?.takeIf { it.isNotBlank() } ?: "Unknown Album"
+
+        val fullInfo = "$artist - $album"
+        val displayedInfo = if (fullInfo.length > 40) {
+            fullInfo.take(30) + "..."
+        } else {
+            fullInfo
+        }
+
+        val displayedInfo2 = if (track.title.length > 37) {
+            track.title.take(35) + "..."
+        } else {
+            track.title
+        }
+
+        holder.binding.trackNameTv.text = displayedInfo2
+        holder.binding.trackArtistNameTv.text = displayedInfo
+
         holder.binding.trackCardItem.setOnClickListener {
             onAudioItemClick(track)
         }
     }
+
 
     override fun getItemCount(): Int = tracks.size
 }

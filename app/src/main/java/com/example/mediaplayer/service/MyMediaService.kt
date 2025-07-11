@@ -98,10 +98,8 @@ class MyMediaService : Service() {
 
     fun next() {
         job?.cancel()
-        val item = tracksList.get(
-            tracksList.indexOf(currentTrack.value)
-                .plus(1).mod(tracksList.size)
-        )
+        val item = tracksList[tracksList.indexOf(currentTrack.value)
+            .plus(1).mod(tracksList.size)]
         currentTrack.update { item }
         play(currentTrack.value!!)
     }
@@ -213,7 +211,7 @@ class MyMediaService : Service() {
     }
 
 
-    fun stopPlayback() {
+    private fun stopPlayback() {
         mediaPlayer?.run {
             try {
                 stop()
@@ -227,12 +225,13 @@ class MyMediaService : Service() {
         mediaPlayer = null
         isPlaying.update { false }
         job?.cancel()
+
         stopForeground(true)
         isInForeground = false
         stopSelf()
     }
 
-    fun createStopPendingIntent(): PendingIntent {
+   private fun createStopPendingIntent(): PendingIntent {
         val intent = Intent(this, MyMediaService::class.java).apply {
             action = MediaConstant.STOP
         }
@@ -244,7 +243,7 @@ class MyMediaService : Service() {
         )
     }
 
-    fun createPrevPendingIntent(): PendingIntent {
+    private fun createPrevPendingIntent(): PendingIntent {
         val intent = Intent(this, MyMediaService::class.java).apply {
             action = MediaConstant.PREVIOUS
         }
@@ -256,7 +255,7 @@ class MyMediaService : Service() {
         )
     }
 
-    fun createPlayPausePendingIntent(): PendingIntent {
+    private fun createPlayPausePendingIntent(): PendingIntent {
         val intent = Intent(this, MyMediaService::class.java).apply {
             action = MediaConstant.PLAY_PAUSE
         }
@@ -268,7 +267,7 @@ class MyMediaService : Service() {
         )
     }
 
-    fun createNextPendingIntent(): PendingIntent {
+    private fun createNextPendingIntent(): PendingIntent {
         val intent = Intent(this, MyMediaService::class.java).apply {
             action = MediaConstant.NEXT
         }

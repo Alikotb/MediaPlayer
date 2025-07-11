@@ -56,7 +56,7 @@ dependencies {
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
 
-
+    implementation("com.airbnb.android:lottie:3.4.0")
     implementation ("androidx.constraintlayout:constraintlayout:2.1.4")
 
     val nav_version = "2.7.7" // or whatever version you're using
@@ -80,6 +80,7 @@ dependencies {
 
     implementation("com.github.bumptech.glide:glide:4.16.0")
 
+    implementation("com.facebook.shimmer:shimmer:0.5.0")
 
     implementation("androidx.media3:media3-session:1.7.1")
 

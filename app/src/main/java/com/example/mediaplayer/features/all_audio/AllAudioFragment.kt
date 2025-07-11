@@ -49,6 +49,12 @@ class AllAudioFragment : Fragment() {
         binding?.backBtn?.setOnClickListener {
             parentFragment?.findNavController()?.navigateUp()
         }
+        if(audioFiles.isEmpty()){
+            binding?.lottieAnimationView?.visibility = View.VISIBLE
+        }else{
+            binding?.lottieAnimationView?.visibility = View.GONE
+
+        }
         binding?.allAudioRecyclerView?.adapter = TracksAdapter(audioFiles){
             navigateToAllAudio(it,audioFiles)
         }

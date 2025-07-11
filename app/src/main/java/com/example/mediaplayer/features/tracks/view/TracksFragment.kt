@@ -17,9 +17,6 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class TracksFragment : Fragment() {
     private val viewModel: TracksViewModel by viewModel()
-    private var isLoaded = false
-
-
     private var _binding: FragmentTracksBinding? = null
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -28,35 +25,48 @@ class TracksFragment : Fragment() {
         _binding = FragmentTracksBinding.inflate(inflater, container, false)
         return _binding?.root
     }
+    override fun onResume() {
+        super.onResume()
+        viewModel.getAllTracks()
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        if (!isLoaded) {
-            viewModel.getAllTracks()
-            isLoaded = true
 
-        }
 
         viewLifecycleOwner.lifecycleScope.launch {
             viewModel.uiState.collect { state ->
                 when (state) {
                     is Response.Loading -> {
-
+                        _binding?.shimmerLayout?.visibility = View.VISIBLE
+                        _binding?.shimmerLayout?.startShimmer()
+                        _binding?.trackRecyclerView?.visibility = View.GONE
                     }
 
                     is Response.Success -> {
-                        _binding?.trackRecyclerView?.adapter = TracksAdapter(state.data) {
-                            navigateToAllAudio(obj = it,state.data)
+                        _binding?.shimmerLayout?.stopShimmer()
+                        _binding?.shimmerLayout?.visibility = View.GONE
+                        _binding?.trackRecyclerView?.visibility = View.VISIBLE
+                        if(state.data.isEmpty()){
+                            _binding?.lottieAnimationView?.visibility = View.VISIBLE
+                        }else{
+                            _binding?.lottieAnimationView?.visibility = View.GONE
+
                         }
-                        return@collect
+                        _binding?.trackRecyclerView?.adapter = TracksAdapter(state.data) {
+                            navigateToAllAudio(obj = it, state.data)
+                        }
                     }
 
                     is Response.Error -> {
-                        return@collect
+                        _binding?.shimmerLayout?.stopShimmer()
+                        _binding?.shimmerLayout?.visibility = View.GONE
+                        _binding?.trackRecyclerView?.visibility = View.GONE
                     }
                 }
             }
         }
+
     }
 
 

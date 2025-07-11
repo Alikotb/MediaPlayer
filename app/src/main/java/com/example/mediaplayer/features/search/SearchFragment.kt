@@ -57,14 +57,24 @@ class SearchFragment : Fragment() {
         setSearchViewConfig(searchView)
         viewLifecycleOwner.lifecycleScope.launch {
             viewModel.searchInTracks(searchText)
-
             viewModel.uiState.collect { state ->
                 when (state) {
                     is Response.Loading -> {
-
+                        binding?.shimmerLayout?.visibility = View.VISIBLE
+                        binding?.shimmerLayout?.startShimmer()
+                        binding?.searchRecyclerView?.visibility = View.GONE
                     }
 
                     is Response.Success -> {
+                        binding?.shimmerLayout?.stopShimmer()
+                        binding?.shimmerLayout?.visibility = View.GONE
+                        binding?.searchRecyclerView?.visibility = View.VISIBLE
+                        if(state.data.isEmpty()){
+                            binding?.lottieAnimationView?.visibility = View.VISIBLE
+                        }else{
+                            binding?.lottieAnimationView?.visibility = View.GONE
+
+                        }
                         binding?.searchRecyclerView?.adapter = TracksAdapter(state.data) {
                            navigateToAudioPlayer(obj = it , list = state.data)
                         }
@@ -72,6 +82,11 @@ class SearchFragment : Fragment() {
                     }
 
                     is Response.Error -> {
+
+                        binding?.shimmerLayout?.stopShimmer()
+                        binding?.shimmerLayout?.visibility = View.GONE
+                        binding?.searchRecyclerView?.visibility = View.GONE
+
                         return@collect
                     }
                 }

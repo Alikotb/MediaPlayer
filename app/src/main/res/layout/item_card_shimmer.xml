@@ -1,0 +1,49 @@
+<com.facebook.shimmer.ShimmerFrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/shimmer_layout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="8dp"
+    android:layout_marginVertical="4dp"
+    android:layout_marginHorizontal="8dp"
+    android:background="@color/search_background"
+    android:foreground="?attr/selectableItemBackground">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <!-- Simulate track name -->
+        <View
+            android:id="@+id/shimmer_title"
+            android:layout_width="0dp"
+            android:layout_height="16dp"
+            android:background="@drawable/shimmer_placeholder"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <!-- Simulate icon -->
+        <View
+            android:id="@+id/shimmer_icon"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="4dp"
+            android:background="@drawable/shimmer_placeholder"
+            app:layout_constraintTop_toBottomOf="@id/shimmer_title"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <!-- Simulate artist name -->
+        <View
+            android:id="@+id/shimmer_artist"
+            android:layout_width="0dp"
+            android:layout_height="14dp"
+            android:background="@drawable/shimmer_placeholder"
+            app:layout_constraintTop_toTopOf="@id/shimmer_icon"
+            app:layout_constraintBottom_toBottomOf="@id/shimmer_icon"
+            app:layout_constraintStart_toEndOf="@id/shimmer_icon"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</com.facebook.shimmer.ShimmerFrameLayout>

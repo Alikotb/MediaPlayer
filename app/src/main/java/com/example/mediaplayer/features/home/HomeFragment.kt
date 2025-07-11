@@ -1,24 +1,24 @@
 package com.example.mediaplayer.features.home
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.AnimationUtils
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.example.mediaplayer.R
-import com.example.mediaplayer.features.tracks.view.TracksFragment
 import com.example.mediaplayer.databinding.FragmentHomeBinding
 import com.example.mediaplayer.features.albums.view.AlbumsFragment
 import com.example.mediaplayer.features.folders.view.FoldersFragment
+import com.example.mediaplayer.features.tracks.view.TracksFragment
 import com.google.android.material.tabs.TabLayoutMediator
 
 class SplashFragment : Fragment() {
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
-    private var tabTitles = listOf("Tracks", "Albums", "Folders")
+    private var tabTitles = listOf("Tracks", "Albums", "Folders","PlayList")
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -29,7 +29,8 @@ class SplashFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        Log.d("ali", "onViewCreated: ")
+        val enterAnim = AnimationUtils.loadAnimation(requireContext(), R.anim.fade_in)
+        binding.root.startAnimation(enterAnim)
         binding.viewPager.adapter = ViewPagerAdapter(this)
         TabLayoutMediator(binding.tabLayout, binding.viewPager) { tab, position ->
             tab.text = tabTitles[position]
@@ -64,12 +65,13 @@ class SplashFragment : Fragment() {
                 0 -> return TracksFragment()
                 1 -> return AlbumsFragment()
                 2 -> return FoldersFragment()
+                3 -> return FoldersFragment()
                 else -> return TracksFragment()
             }
         }
 
         override fun getItemCount(): Int {
-            return 3
+            return 4
         }
     }
 

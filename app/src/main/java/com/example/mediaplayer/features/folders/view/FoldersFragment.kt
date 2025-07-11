@@ -37,15 +37,31 @@ class FoldersFragment : Fragment() {
             isLoaded = true
         }
         viewLifecycleOwner.lifecycleScope.launch {
+
             viewModel.uiState.collect { state ->
                 when(state){
                     is Response.Error -> {
+                        _binding?.shimmerLayout?.stopShimmer()
+                        _binding?.shimmerLayout?.visibility = View.GONE
+                        _binding?.folderRecyclerView?.visibility = View.GONE
                         return@collect
                     }
-                    Response.Loading -> {
-
+                    is Response.Loading -> {
+                        _binding?.shimmerLayout?.visibility = View.VISIBLE
+                        _binding?.shimmerLayout?.startShimmer()
+                        _binding?.folderRecyclerView?.visibility = View.GONE
                     }
                     is Response.Success -> {
+
+                        _binding?.shimmerLayout?.stopShimmer()
+                        _binding?.shimmerLayout?.visibility = View.GONE
+                        _binding?.folderRecyclerView?.visibility = View.VISIBLE
+                        if(state.data.isEmpty()){
+                            _binding?.lottieAnimationView?.visibility = View.VISIBLE
+                        }else{
+                            _binding?.lottieAnimationView?.visibility = View.GONE
+
+                        }
                         _binding?.folderRecyclerView?.adapter = FolderAdapter(state.data){
                             navigateToAllAudio(it)
                         }
