@@ -16,4 +16,9 @@
     <string name="_10_song_s">10 song(s)</string>
     <string name="track_title">Track Title</string>
     <string name="artist_name">Artist Name</string>
+    <string name="add_to_playlist">Add to Playlist</string>
+    <string name="set_as_ringtone">Set as Ringtone</string>
+    <string name="share_file">Share file</string>
+    <string name="cancel">Cancel</string>
+    <string name="new_playlist">New playlist</string>
 </resources>
