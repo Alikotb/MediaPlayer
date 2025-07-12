@@ -4,12 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
     app:startDestination="@id/splashFragment">
-
+    <action
+        android:id="@+id/action_global_audioPlayerFragment"
+        app:destination="@id/audioPlayerFragment" />
     <fragment
         android:id="@+id/splashFragment"
         android:name="com.example.mediaplayer.features.home.SplashFragment"
         android:label="fragment_splash"
         tools:layout="@layout/fragment_home" >
+
         <action
             android:id="@+id/action_splashFragment_to_historyFragment"
             app:destination="@id/historyFragment" />
@@ -94,6 +97,10 @@
         <action
             android:id="@+id/action_allAudioFragment_to_audioPlayerFragment"
             app:destination="@id/audioPlayerFragment" />
+        <argument
+            android:name="playlist"
+            app:argType="com.example.mediaplayer.model.dto.PlaylistDto"
+            app:nullable="true" />
     </fragment>
     <fragment
         android:id="@+id/audioPlayerFragment"

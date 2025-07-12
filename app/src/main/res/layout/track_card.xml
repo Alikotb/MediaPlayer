@@ -60,7 +60,16 @@
             app:layout_constraintBottom_toBottomOf="@id/icon"
             app:layout_constraintStart_toEndOf="@id/icon"
             app:layout_constraintEnd_toEndOf="parent" />
-
+        <ImageView
+            android:id="@+id/delete_btn"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:visibility="gone"
+            android:src="@drawable/outline_delete_forever_24"
+            android:contentDescription="@string/todo"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </com.google.android.material.card.MaterialCardView>
 

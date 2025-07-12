@@ -2,8 +2,7 @@ package com.example.mediaplayer.model.dto
 
 import android.graphics.Bitmap
 import android.os.Parcelable
-import kotlinx.android.parcel.Parcelize
-import kotlinx.serialization.Serializable
+import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class AlbumsDto(

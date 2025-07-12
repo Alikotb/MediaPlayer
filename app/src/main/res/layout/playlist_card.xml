@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/folder_card_item"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginVertical="4dp"
+    android:elevation="4dp"
+    app:cardCornerRadius="4dp"
+    app:cardElevation="4dp"
+    app:cardBackgroundColor="@color/search_background">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="8dp">
+        <!-- Folder Icon -->
+        <ImageView
+            android:id="@+id/icon"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/outline_queue_music_24"
+            android:contentDescription="@string/todo"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <!-- Folder Name -->
+        <TextView
+            android:id="@+id/folder_name_tv"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/download"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:maxLines="1"
+            android:ellipsize="end"
+            android:textAlignment="viewStart"
+            android:textDirection="inherit"
+            android:textColor="@color/search_text"
+            app:layout_constraintStart_toEndOf="@id/icon"
+            app:layout_constraintTop_toTopOf="@id/icon"
+            app:layout_constraintEnd_toStartOf="@id/delete_btn"
+            app:layout_constraintHorizontal_bias="0"
+            android:layout_marginStart="12dp" />
+
+        <!-- Song Count -->
+        <TextView
+            android:id="@+id/folder_count_tv"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/_10_song_s"
+            android:textSize="14sp"
+            android:textColor="@android:color/darker_gray"
+            app:layout_constraintStart_toStartOf="@id/folder_name_tv"
+            app:layout_constraintTop_toBottomOf="@id/folder_name_tv"
+            app:layout_constraintEnd_toStartOf="@id/delete_btn" />
+
+        <!-- Delete Button -->
+        <ImageView
+            android:id="@+id/delete_btn"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:src="@drawable/outline_delete_forever_24"
+            android:contentDescription="@string/todo"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/icon"
+            app:layout_constraintBottom_toBottomOf="@id/icon" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.cardview.widget.CardView>

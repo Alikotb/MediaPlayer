@@ -1,8 +1,8 @@
 <resources>
-    <string name="app_name">MediaPlayer</string>
+    <string name="app_name">Tunoo</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="mymusic">MyMusic</string>
+    <string name="mymusic">My Music</string>
     <string name="search">search</string>
     <string name="fav_btn">fav_btn</string>
     <string name="albums">Albums!</string>
@@ -21,4 +21,12 @@
     <string name="share_file">Share file</string>
     <string name="cancel">Cancel</string>
     <string name="new_playlist">New playlist</string>
+    <string name="app_icon">App icon</string>
+    <string name="tracks_tap">Tracks</string>
+    <string name="albums_tap">Albums</string>
+    <string name="folders_tap">Folder</string>
+    <string name="playlist_tap">PlayLists</string>
+    <string name="search_here">Search here…</string>
+    <string name="new_plalist">New Playlist</string>
+    <string name="song_s">song(s)</string>
 </resources>

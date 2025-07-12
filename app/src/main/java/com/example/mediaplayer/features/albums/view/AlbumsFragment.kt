@@ -62,7 +62,7 @@ class AlbumsFragment : Fragment() {
                             binding?.lottieAnimationView?.visibility = View.GONE
 
                         }
-                        binding?.albumRecyclerView?.adapter = AlbumAdapter(state.data){
+                        binding?.albumRecyclerView?.adapter = AlbumAdapter(requireContext(),state.data){
                             navigateToAllAudio(obj=it)
 
                         }
@@ -74,7 +74,8 @@ class AlbumsFragment : Fragment() {
     fun navigateToAllAudio(obj: AlbumsDto) {
         val action = SplashFragmentDirections.actionSplashFragmentToAllAudioFragment(
             album = obj,
-            folder = null
+            folder = null,
+            playlist = null
         )
         parentFragment?.findNavController()?.navigate(action)
 

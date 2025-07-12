@@ -1,5 +1,7 @@
 package com.example.mediaplayer.features.albums.view
 
+import android.annotation.SuppressLint
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -7,9 +9,11 @@ import com.bumptech.glide.Glide
 import com.example.mediaplayer.R
 import com.example.mediaplayer.databinding.AlbumsCardBinding
 import com.example.mediaplayer.model.dto.AlbumsDto
+import com.example.mediaplayer.utils.convertNumbersToArabic
 import com.example.mediaplayer.utils.getAlbumArt
 
 class AlbumAdapter(
+   private val context: Context,
     private val albums: List<AlbumsDto>,
     val onAudioItemClick: (AlbumsDto) -> Unit = {}
 ) : RecyclerView.Adapter<AlbumAdapter.AlbumViewHolder>() {
@@ -24,10 +28,11 @@ class AlbumAdapter(
         return AlbumViewHolder(binding)
     }
 
+    @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: AlbumViewHolder, position: Int) {
         val album = albums[position]
         holder.binding.albumNameTv.text = album.albumName
-        holder.binding.albumCountTv.text = "${album.audioFiles.size} song(s)"
+        holder.binding.albumCountTv.text = "${album.audioFiles.size} ".convertNumbersToArabic()+ context.getString(R.string.song_s)
 
         Glide.with(holder.binding.root)
             .asBitmap()

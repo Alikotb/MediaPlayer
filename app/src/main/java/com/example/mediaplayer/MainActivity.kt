@@ -111,19 +111,21 @@ class MainActivity : AppCompatActivity() {
 
         if (audio != null && audioList != null) {
             val navHostFragment =
-                supportFragmentManager.findFragmentById(R.id.nav_graph) as NavHostFragment
+                supportFragmentManager.findFragmentById(R.id.fragment_container) as? NavHostFragment ?: return
             val navController = navHostFragment.navController
 
-            val action = SplashFragmentDirections.actionSplashFragmentToAudioPlayerFragment(
-                audioFile = audio,
-                audioList = audioList.toTypedArray()
-            )
-
-            if (navController.currentDestination?.id != R.id.audioPlayerFragment) {
+            val currentDest = navController.currentDestination?.id
+            if (currentDest != R.id.audioPlayerFragment) {
+                val action = SplashFragmentDirections.actionGlobalAudioPlayerFragment(
+                    audioFile = audio,
+                    audioList = audioList.toTypedArray()
+                )
                 navController.navigate(action)
+            } else {
             }
         }
     }
+
 
 
 }

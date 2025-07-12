@@ -1,0 +1,32 @@
+<resources>
+    <string name="app_name">Tunoo</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="mymusic">الموسيقى الخاصة بي</string>
+    <string name="search">search</string>
+    <string name="fav_btn">fav_btn</string>
+    <string name="albums">Albums!</string>
+    <string name="tracks">Tracks!</string>
+    <string name="folders">Folders!</string>
+    <string name="history">مشغل مؤخرا</string>
+    <string name="favorite">مفضلاتي</string>
+    <string name="todo">TODO</string>
+    <string name="alasfour">Alasfour - العصفور</string>
+    <string name="download">Download</string>
+    <string name="_10_song_s">10 song(s)</string>
+    <string name="track_title">Track Title</string>
+    <string name="artist_name">Artist Name</string>
+    <string name="add_to_playlist">إضافة إل قائمة تشغيل</string>
+    <string name="set_as_ringtone">تعيين كنغمة رنين</string>
+    <string name="share_file">مشاركة الملف</string>
+    <string name="cancel">إلغاء</string>
+    <string name="new_playlist">قائمة تشغيل جديدة</string>
+    <string name="app_icon">App icon</string>
+    <string name="tracks_tap">أغنية</string>
+    <string name="albums_tap">الألبومات</string>
+    <string name="folders_tap">مجلد</string>
+    <string name="playlist_tap">قوائم التشغيل</string>
+    <string name="search_here">إبحث هنا…</string>
+    <string name="new_plalist">قائمة تشغيل جديدة</string>
+    <string name="song_s">أغنية(أغاني)</string>
+
+</resources>

@@ -24,7 +24,7 @@ class HistoryViewModel(private val repo : IRepository): ViewModel() {
             }.collect {
                 val list = it
                     .sortedByDescending { history -> history.date }
-                    .take(20).map { it.toAudioDto() }
+                    .take(30).map { it.toAudioDto() }
                 _uiState.emit(Response.Success(list))
             }
         }

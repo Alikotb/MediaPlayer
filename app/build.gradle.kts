@@ -2,7 +2,7 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
-    id("org.jetbrains.kotlin.plugin.serialization") version "1.9.22"
+    id("org.jetbrains.kotlin.plugin.serialization") version "2.2.0"
     id("kotlin-kapt")
 
     id ("kotlin-parcelize")
@@ -82,11 +82,5 @@ dependencies {
 
     implementation("com.facebook.shimmer:shimmer:0.5.0")
 
-    implementation("androidx.media3:media3-session:1.7.1")
-
-    implementation("androidx.media3:media3-exoplayer:1.7.1")
-    implementation("androidx.media3:media3-ui:1.7.1")
-    implementation("androidx.media3:media3-common:1.7.1")
-    implementation("androidx.media3:media3-session:1.7.1" )
     implementation ("androidx.media:media:1.6.0")
 }

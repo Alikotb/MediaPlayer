@@ -4,6 +4,7 @@ import com.example.mediaplayer.model.dto.AlbumsDto
 import com.example.mediaplayer.model.dto.AudioDto
 import com.example.mediaplayer.model.dto.FolderDto
 import com.example.mediaplayer.model.dto.HistoryDto
+import com.example.mediaplayer.model.dto.PlaylistDto
 import com.example.mediaplayer.model.local_data_source.data_source.ILocalDataSource
 import com.example.mediaplayer.model.media_source.IMediaSource
 import kotlinx.coroutines.flow.Flow
@@ -43,5 +44,20 @@ class RepositoryImp(
         localDataSource.insertHistoryFile(historyDto)
     }
 
+    override suspend fun insertNewPlayList(playlistDto: PlaylistDto) {
+        localDataSource.insertNewPlayList(playlistDto)
+    }
+
+    override fun getAllPlaylists() = localDataSource.getAllPlaylists()
+
+    override suspend fun deletePlaylist(playlistDto: PlaylistDto) {
+        localDataSource.deletePlaylist(playlistDto)
+    }
+
+    override suspend fun getPlaylistByName(name: String) = localDataSource.getPlaylistByName(name)
+
+    override suspend fun updatePlaylist(playlist: PlaylistDto) {
+        localDataSource.updatePlaylist(playlist)
+    }
 
 }

@@ -12,13 +12,15 @@ import com.example.mediaplayer.R
 import com.example.mediaplayer.databinding.FragmentHomeBinding
 import com.example.mediaplayer.features.albums.view.AlbumsFragment
 import com.example.mediaplayer.features.folders.view.FoldersFragment
+import com.example.mediaplayer.features.playlist.view.PlaylistFragment
 import com.example.mediaplayer.features.tracks.view.TracksFragment
 import com.google.android.material.tabs.TabLayoutMediator
 
 class SplashFragment : Fragment() {
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
-    private var tabTitles = listOf("Tracks", "Albums", "Folders","PlayList")
+    private lateinit var tabTitles: List<String>
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -29,6 +31,11 @@ class SplashFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        tabTitles = listOf(getString(R.string.tracks_tap),
+            getString(R.string.albums_tap), getString(R.string.folders_tap),
+            getString(R.string.playlist_tap))
+
+
         val enterAnim = AnimationUtils.loadAnimation(requireContext(), R.anim.fade_in)
         binding.root.startAnimation(enterAnim)
         binding.viewPager.adapter = ViewPagerAdapter(this)
@@ -41,9 +48,6 @@ class SplashFragment : Fragment() {
                 navigateToHistory()
             }
             searchCard.setOnClickListener {
-                navigateToSearch()
-            }
-            searchBtn.setOnClickListener {
                 navigateToSearch()
             }
             favCard.setOnClickListener {
@@ -65,7 +69,7 @@ class SplashFragment : Fragment() {
                 0 -> return TracksFragment()
                 1 -> return AlbumsFragment()
                 2 -> return FoldersFragment()
-                3 -> return FoldersFragment()
+                3 -> return PlaylistFragment()
                 else -> return TracksFragment()
             }
         }

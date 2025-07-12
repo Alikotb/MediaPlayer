@@ -53,9 +53,12 @@ class TracksFragment : Fragment() {
                             _binding?.lottieAnimationView?.visibility = View.GONE
 
                         }
-                        _binding?.trackRecyclerView?.adapter = TracksAdapter(state.data) {
+                        _binding?.trackRecyclerView?.adapter = TracksAdapter(
+                            false,
+                            state.data
+                        , onAudioItemClick = {
                             navigateToAllAudio(obj = it, state.data)
-                        }
+                        })
                     }
 
                     is Response.Error -> {

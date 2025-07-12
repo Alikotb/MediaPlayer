@@ -122,18 +122,14 @@
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/playlist_sheet_recyclerView"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_marginHorizontal="16dp"
-            android:clipToPadding="false"
-            android:paddingVertical="12dp"
-            android:paddingBottom="32dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintTop_toBottomOf="@id/divider3"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
-            tools:listitem="@layout/bottom_sheet_dialog_playlist"
+            tools:listitem="@layout/playlist_bottom_sheet_card"
             tools:itemCount="10"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>

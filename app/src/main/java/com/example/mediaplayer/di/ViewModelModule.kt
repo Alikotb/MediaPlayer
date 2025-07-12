@@ -5,6 +5,7 @@ import com.example.mediaplayer.features.audio_player.AudioPlayerViewModel
 import com.example.mediaplayer.features.favorite.FavoriteViewModel
 import com.example.mediaplayer.features.folders.FolderViewModel
 import com.example.mediaplayer.features.history.HistoryViewModel
+import com.example.mediaplayer.features.playlist.PlayListViewModel
 import com.example.mediaplayer.features.search.SearchViewModel
 import com.example.mediaplayer.features.tracks.TracksViewModel
 import org.koin.core.module.dsl.viewModel
@@ -18,4 +19,5 @@ val viewModelModule = module {
     viewModel { FavoriteViewModel(get()) }
     viewModel { HistoryViewModel(get()) }
     viewModel { SearchViewModel(get()) }
+    viewModel { PlayListViewModel(get()) }
 }

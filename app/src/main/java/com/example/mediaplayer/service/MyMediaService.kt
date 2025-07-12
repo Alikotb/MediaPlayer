@@ -149,7 +149,9 @@ class MyMediaService : Service() {
             flags = Intent.FLAG_ACTIVITY_SINGLE_TOP or Intent.FLAG_ACTIVITY_CLEAR_TOP
             action = "OPEN_PLAYER"
             putExtra("audio", track)
+            putParcelableArrayListExtra("audioList", ArrayList(tracksList))
         }
+
 
         val contentPendingIntent = PendingIntent.getActivity(
             this,

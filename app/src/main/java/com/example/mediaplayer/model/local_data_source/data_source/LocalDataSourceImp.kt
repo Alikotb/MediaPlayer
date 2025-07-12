@@ -2,6 +2,7 @@ package com.example.mediaplayer.model.local_data_source.data_source
 
 import com.example.mediaplayer.model.dto.AudioDto
 import com.example.mediaplayer.model.dto.HistoryDto
+import com.example.mediaplayer.model.dto.PlaylistDto
 import com.example.mediaplayer.model.local_data_source.dao.MediaDao
 
 class LocalDataSourceImp(private val db: MediaDao): ILocalDataSource {
@@ -24,5 +25,21 @@ class LocalDataSourceImp(private val db: MediaDao): ILocalDataSource {
 
     override suspend fun insertHistoryFile(historyDto: HistoryDto) {
         db.insertHistoryFile(historyDto)
+    }
+
+    override suspend fun insertNewPlayList(playlistDto: PlaylistDto) {
+        db.insertNewPlayList(playlistDto)
+    }
+
+    override fun getAllPlaylists() = db.getAllPlaylists()
+
+    override suspend fun deletePlaylist(playlistDto: PlaylistDto) {
+        db.deletePlaylist(playlistDto)
+    }
+
+    override suspend fun getPlaylistByName(name: String) = db.getPlaylistByName(name)
+
+    override suspend fun updatePlaylist(playlist: PlaylistDto) {
+        db.updatePlaylist(playlist)
     }
 }

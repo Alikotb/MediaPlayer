@@ -57,9 +57,12 @@ class HistoryFragment : Fragment() {
                             binding?.lottieAnimationView?.visibility = View.GONE
 
                         }
-                        binding?.historyRecyclerView?.adapter = TracksAdapter(state.data) {
-                            navigateToAudioPlayer(obj = it,state.data)
-                        }
+                        binding?.historyRecyclerView?.adapter = TracksAdapter(
+                             false,
+                            state.data
+                            , onAudioItemClick = {
+                                navigateToAudioPlayer(obj = it, state.data)
+                            })
                         return@collect
                     }
 

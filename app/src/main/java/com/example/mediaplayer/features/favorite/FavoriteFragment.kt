@@ -57,9 +57,12 @@ class FavoriteFragment : Fragment() {
                             binding?.lottieAnimationView?.visibility = View.GONE
 
                         }
-                        binding?.favRecyclerView?.adapter = TracksAdapter(state.data) {
-                            navigateToAudioPlayer(obj = it,state.data)
-                        }
+                        binding?.favRecyclerView?.adapter = TracksAdapter(
+                             false,
+                            state.data
+                            , onAudioItemClick = {
+                                navigateToAudioPlayer(obj = it, state.data)
+                            })
                         return@collect
                     }
 

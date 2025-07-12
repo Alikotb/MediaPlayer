@@ -6,7 +6,6 @@ import android.text.InputType
 import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.FrameLayout
-import android.widget.Toast
 
 fun createPlaylistDialog(context: Context,onConfirmBtnClick : (String)-> Unit={},){
     val builder = AlertDialog.Builder(context)
@@ -28,11 +27,6 @@ fun createPlaylistDialog(context: Context,onConfirmBtnClick : (String)-> Unit={}
     builder.setView(container)
     builder.setPositiveButton("Confirm") { dialog, _ ->
         val playlistName = input.text.toString().trim()
-        if (playlistName.isNotEmpty()) {
-            Toast.makeText(context, "New Playlist: $playlistName", Toast.LENGTH_SHORT).show()
-        } else {
-            Toast.makeText(context, "Please enter a name", Toast.LENGTH_SHORT).show()
-        }
         onConfirmBtnClick(playlistName)
         dialog.dismiss()
     }

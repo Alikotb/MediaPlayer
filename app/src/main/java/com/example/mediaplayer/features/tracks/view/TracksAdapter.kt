@@ -1,16 +1,22 @@
 package com.example.mediaplayer.features.tracks.view
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mediaplayer.databinding.TrackCardBinding
 import com.example.mediaplayer.model.dto.AudioDto
+
 class TracksAdapter(
+    private val isPlaylist: Boolean,
     private val tracks: List<AudioDto>,
-    val onAudioItemClick: (AudioDto) -> Unit = {}
+    val onAudioItemClick: (AudioDto) -> Unit = {},
+    val onDelete: (AudioDto) -> Unit = {},
 ) : RecyclerView.Adapter<TracksAdapter.TrackViewHolder>() {
 
-    inner class TrackViewHolder(val binding: TrackCardBinding
+    inner class TrackViewHolder(
+        val binding: TrackCardBinding,
+
     ) : RecyclerView.ViewHolder(binding.root)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TrackViewHolder {
@@ -19,6 +25,7 @@ class TracksAdapter(
             .inflate(inflater, parent, false)
         return TrackViewHolder(binding)
     }
+
     override fun onBindViewHolder(holder: TrackViewHolder, position: Int) {
         val track = tracks[position]
 
@@ -40,6 +47,12 @@ class TracksAdapter(
 
         holder.binding.trackNameTv.text = displayedInfo2
         holder.binding.trackArtistNameTv.text = displayedInfo
+        if (isPlaylist) {
+            holder.binding.deleteBtn.visibility = View.VISIBLE
+            holder.binding.deleteBtn.setOnClickListener {
+                onDelete(track)
+            }
+        }
 
         holder.binding.trackCardItem.setOnClickListener {
             onAudioItemClick(track)

@@ -75,9 +75,12 @@ class SearchFragment : Fragment() {
                             binding?.lottieAnimationView?.visibility = View.GONE
 
                         }
-                        binding?.searchRecyclerView?.adapter = TracksAdapter(state.data) {
-                           navigateToAudioPlayer(obj = it , list = state.data)
-                        }
+                        binding?.searchRecyclerView?.adapter = TracksAdapter(
+                            false,
+                            state.data
+                            , onAudioItemClick = {
+                                navigateToAudioPlayer(obj = it, state.data)
+                            })
                         return@collect
                     }
 
@@ -115,7 +118,7 @@ class SearchFragment : Fragment() {
         val closeIcon = searchView.findViewById<ImageView>(
             androidx.appcompat.R.id.search_close_btn
         )
-        searchView.queryHint = "Search here..."
+        searchView.queryHint = getString(R.string.search_here)
         searchView.isFocusable = true
         searchView.isFocusableInTouchMode = true
         searchView.isClickable = true
