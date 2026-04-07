@@ -1,19 +1,13 @@
 <resources>
     <string name="app_name">Tunoo</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="mymusic">My Music</string>
-    <string name="search">search</string>
-    <string name="fav_btn">fav_btn</string>
+    <string name="search">Search</string>
+    <string name="fav_btn">Favorite</string>
     <string name="albums">Albums!</string>
     <string name="tracks">Tracks!</string>
     <string name="folders">Folders!</string>
     <string name="history">History</string>
     <string name="favorite">Favorite</string>
-    <string name="todo">TODO</string>
-    <string name="alasfour">Alasfour - العصفور</string>
-    <string name="download">Download</string>
-    <string name="_10_song_s">10 song(s)</string>
     <string name="track_title">Track Title</string>
     <string name="artist_name">Artist Name</string>
     <string name="add_to_playlist">Add to Playlist</string>
@@ -21,12 +15,28 @@
     <string name="share_file">Share file</string>
     <string name="cancel">Cancel</string>
     <string name="new_playlist">New playlist</string>
-    <string name="app_icon">App icon</string>
     <string name="tracks_tap">Tracks</string>
     <string name="albums_tap">Albums</string>
     <string name="folders_tap">Folder</string>
     <string name="playlist_tap">PlayLists</string>
     <string name="search_here">Search here…</string>
-    <string name="new_plalist">New Playlist</string>
     <string name="song_s">song(s)</string>
+    <string name="no_history">No history found</string>
+    <string name="no_favorites">No favorites found</string>
+    <string name="no_playlists">No playlists found</string>
+    <string name="no_tracks">No tracks found</string>
+    <string name="unknown_artist">Unknown Artist</string>
+    <string name="added_successfully">Added successfully</string>
+    <string name="deleted_successfully">Deleted successfully</string>
+    <string name="already_exists">Already exists</string>
+    <string name="enter_playlist_name">Enter playlist name</string>
+    <string name="share_audio">Share Audio</string>
+    <string name="ringtone_set">Ringtone Set!</string>
+    <string name="failed_to_set_ringtone">Failed to set ringtone</string>
+    <string name="file_not_found">File not found</string>
+    <string name="audio_permission_denied" translatable="false">Audio access permission denied</string>
+    <string name="notification_permission_denied" translatable="false">Notification permission denied</string>
+    <string name="added_success_msg" translatable="false">%1$s added successfully</string>
+    <string name="deleted_success_msg" translatable="false">%1$s deleted successfully</string>
+    <string name="already_exists_msg" translatable="false">%1$s already exists</string>
 </resources>

@@ -2,7 +2,7 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
-    id("org.jetbrains.kotlin.plugin.serialization") version "2.2.0"
+    id("org.jetbrains.kotlin.plugin.serialization") version "1.9.24"
     id("kotlin-kapt")
 
     id ("kotlin-parcelize")
@@ -12,13 +12,13 @@ plugins {
 }
 
 android {
-    namespace = "com.example.mediaplayer"
+    namespace = "com.audio.tunoo.mediaplayer"
     compileSdk = 36
     buildFeatures {
         viewBinding = true
     }
     defaultConfig {
-        applicationId = "com.example.mediaplayer"
+        applicationId = "com.audio.tunoo.mediaplayer"
         minSdk = 24
         targetSdk = 36
         versionCode = 1
@@ -57,7 +57,6 @@ dependencies {
     androidTestImplementation(libs.androidx.espresso.core)
 
     implementation("com.airbnb.android:lottie:3.4.0")
-    implementation ("androidx.constraintlayout:constraintlayout:2.1.4")
 
     val nav_version = "2.7.7" // or whatever version you're using
     implementation("androidx.navigation:navigation-fragment-ktx:$nav_version")

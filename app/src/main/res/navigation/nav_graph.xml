@@ -9,7 +9,7 @@
         app:destination="@id/audioPlayerFragment" />
     <fragment
         android:id="@+id/splashFragment"
-        android:name="com.example.mediaplayer.features.home.SplashFragment"
+        android:name="com.audio.tunoo.mediaplayer.features.home.SplashFragment"
         android:label="fragment_splash"
         tools:layout="@layout/fragment_home" >
 
@@ -31,7 +31,7 @@
     </fragment>
     <fragment
         android:id="@+id/albumsFragment"
-        android:name="com.example.mediaplayer.features.albums.view.AlbumsFragment"
+        android:name="com.audio.tunoo.mediaplayer.features.albums.view.AlbumsFragment"
         android:label="AlbumsFragment" >
         <action
             android:id="@+id/action_albumsFragment_to_allAudioFragment"
@@ -39,7 +39,7 @@
     </fragment>
     <fragment
         android:id="@+id/favoriteFragment"
-        android:name="com.example.mediaplayer.features.favorite.FavoriteFragment"
+        android:name="com.audio.tunoo.mediaplayer.features.favorite.FavoriteFragment"
         android:label="FavoriteFragment" >
         <action
             android:id="@+id/action_favoriteFragment_to_audioPlayerFragment"
@@ -47,7 +47,7 @@
     </fragment>
     <fragment
         android:id="@+id/foldersFragment"
-        android:name="com.example.mediaplayer.features.folders.view.FoldersFragment"
+        android:name="com.audio.tunoo.mediaplayer.features.folders.view.FoldersFragment"
         android:label="FoldersFragment" >
         <action
             android:id="@+id/action_foldersFragment_to_allAudioFragment"
@@ -55,7 +55,7 @@
     </fragment>
     <fragment
         android:id="@+id/historyFragment"
-        android:name="com.example.mediaplayer.features.history.HistoryFragment"
+        android:name="com.audio.tunoo.mediaplayer.features.history.HistoryFragment"
         android:label="HistoryFragment" >
         <action
             android:id="@+id/action_historyFragment_to_audioPlayerFragment"
@@ -63,7 +63,7 @@
     </fragment>
     <fragment
         android:id="@+id/searchFragment"
-        android:name="com.example.mediaplayer.features.search.SearchFragment"
+        android:name="com.audio.tunoo.mediaplayer.features.search.SearchFragment"
         android:label="SearchFragment" >
         <action
             android:id="@+id/action_searchFragment_to_audioPlayerFragment"
@@ -71,7 +71,7 @@
     </fragment>
     <fragment
         android:id="@+id/tracksFragment"
-        android:name="com.example.mediaplayer.features.tracks.view.TracksFragment"
+        android:name="com.audio.tunoo.mediaplayer.features.tracks.view.TracksFragment"
         android:label="TracksFragment" >
         <action
             android:id="@+id/action_tracksFragment_to_audioPlayerFragment"
@@ -79,39 +79,39 @@
     </fragment>
     <activity
         android:id="@+id/mainActivity"
-        android:name="com.example.mediaplayer.MainActivity"
+        android:name="com.audio.tunoo.mediaplayer.MainActivity"
         android:label="fragment_folders"
         tools:layout="@layout/fragment_folders" />
     <fragment
         android:id="@+id/allAudioFragment"
-        android:name="com.example.mediaplayer.features.all_audio.AllAudioFragment"
+        android:name="com.audio.tunoo.mediaplayer.features.all_audio.AllAudioFragment"
         android:label="AllAudioFragment" >
         <argument
             android:name="album"
-            app:argType="com.example.mediaplayer.model.dto.AlbumsDto"
+            app:argType="com.audio.tunoo.mediaplayer.model.dto.AlbumsDto"
             app:nullable="true" />
         <argument
             android:name="folder"
-            app:argType="com.example.mediaplayer.model.dto.FolderDto"
+            app:argType="com.audio.tunoo.mediaplayer.model.dto.FolderDto"
             app:nullable="true" />
         <action
             android:id="@+id/action_allAudioFragment_to_audioPlayerFragment"
             app:destination="@id/audioPlayerFragment" />
         <argument
             android:name="playlist"
-            app:argType="com.example.mediaplayer.model.dto.PlaylistDto"
+            app:argType="com.audio.tunoo.mediaplayer.model.dto.PlaylistDto"
             app:nullable="true" />
     </fragment>
     <fragment
         android:id="@+id/audioPlayerFragment"
-        android:name="com.example.mediaplayer.features.audio_player.AudioPlayerFragment"
+        android:name="com.audio.tunoo.mediaplayer.features.audio_player.AudioPlayerFragment"
         android:label="AudioPlayerFragment" >
         <argument
             android:name="audio_file"
-            app:argType="com.example.mediaplayer.model.dto.AudioDto"
+            app:argType="com.audio.tunoo.mediaplayer.model.dto.AudioDto"
             app:nullable="true" />
         <argument
             android:name="audioList"
-            app:argType="com.example.mediaplayer.model.dto.AudioDto[]" />
+            app:argType="com.audio.tunoo.mediaplayer.model.dto.AudioDto[]" />
     </fragment>
 </navigation>

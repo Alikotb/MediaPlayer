@@ -13,7 +13,7 @@
         android:layout_width="24dp"
         android:layout_height="24dp"
         android:src="@mipmap/logo"
-    android:contentDescription="@string/app_icon" />
+    android:contentDescription="@null" />
 
     <TextView
         android:id="@+id/snackbar_text"

@@ -50,7 +50,7 @@ android:layout_height="match_parent">
         app:layout_constraintEnd_toEndOf="parent">
 
         <ImageView
-            android:contentDescription="@string/todo"
+            android:contentDescription="@null"
             android:id="@+id/playlist_card_img"
             android:layout_width="24dp"
             android:layout_height="24dp"
@@ -62,7 +62,7 @@ android:layout_height="match_parent">
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:text="@string/new_plalist"
+            android:text="@string/new_playlist"
             android:textColor="@color/search_text"
             android:textSize="16sp"
             android:textStyle="bold" />

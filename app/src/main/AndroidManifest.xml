@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.mediaplayer">
+    package="com.audio.tunoo.mediaplayer">
 
     <!-- Required permissions -->
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
@@ -24,7 +24,6 @@
         android:theme="@style/Theme.MediaPlayer"
         android:supportsRtl="true">
 
-        <!-- Launcher Activity -->
         <activity
             android:name=".MainActivity"
             android:exported="true"
@@ -35,7 +34,6 @@
             </intent-filter>
         </activity>
 
-        <!-- Foreground Media Service -->
         <service
             android:name=".service.MyMediaService"
             android:enabled="true"
@@ -46,10 +44,9 @@
             </intent-filter>
         </service>
 
-        <!-- FileProvider -->
         <provider
             android:name="androidx.core.content.FileProvider"
-            android:authorities="com.example.mediaplayer.provider"
+            android:authorities="com.audio.tunoo.mediaplayer.provider"
             android:exported="false"
             android:grantUriPermissions="true">
             <meta-data
@@ -57,7 +54,6 @@
                 android:resource="@xml/ile_paths" />
         </provider>
 
-        <!-- (Optional) Needed for Room MultiInstanceInvalidation -->
         <service
             android:name="androidx.room.MultiInstanceInvalidationService"
             android:directBootAware="true"

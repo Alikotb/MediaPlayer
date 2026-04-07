@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/track_card_item"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -19,8 +20,7 @@
             android:id="@+id/track_name_tv"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="@string/track_title"
-
+            tools:text="Track Title"
             android:textAlignment="viewStart"
             android:textDirection="inherit"
             android:textSize="16sp"
@@ -39,7 +39,7 @@
             android:layout_marginTop="8dp"
             android:layout_marginEnd="4dp"
             android:src="@drawable/outline_person_pin_circle_24"
-            android:contentDescription="@string/todo"
+            android:contentDescription="@null"
             app:layout_constraintTop_toBottomOf="@id/track_name_tv"
             app:layout_constraintStart_toStartOf="parent"
             app:tint="@color/search_text" />
@@ -48,7 +48,7 @@
             android:id="@+id/track_artist_name_tv"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="@string/artist_name"
+            tools:text="Artist Name"
             android:textSize="14sp"
             android:textColor="@android:color/darker_gray"
             android:maxLines="1"
@@ -66,11 +66,9 @@
             android:layout_height="32dp"
             android:visibility="gone"
             android:src="@drawable/outline_delete_forever_24"
-            android:contentDescription="@string/todo"
+            android:contentDescription="@null"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </com.google.android.material.card.MaterialCardView>
-
-
